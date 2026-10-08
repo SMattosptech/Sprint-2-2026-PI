@@ -1,97 +1,239 @@
 <!DOCTYPE html>
 <html lang="pt_br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+
 </head>
 
 <body>
+    <div class="container">
+        <h1>Cálculo da sua perda</h1>
+        <div class="question">
+            <p>
+                Informe a área da sua plantação em hectares (ha):
+            </p>
+            <input type="text" id="ipt_hec" placeholder="Ex: 200">
+        </div>
+        <br><br>
+        <div class="question">
+            <p>
+                Informe o valor de uma saca de café de 60 kg (R$):
+            </p>
 
-    <h1>Cálculo da sua perda</h1>
+            <input type="text" id="ipt_fat" placeholder="Ex:  1800">
+        </div>
+        <br><br>
+        <div class="question">
+            <p>
+                Você transforma o café colhido em produto final (líquido)
+                ou vende os grãos?
+            </p>
 
-    <p>
-        Informe a área da sua plantação em hectares (ha):
-    </p>
+            <select id="option_1">
+                <option disabled selected ">Selecione...</option>
+                <option value=" 1">Transformo</option>
+                <option value="2">Vendo grãos</option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <center><button onclick="calcular()"><img style="width: 35px;" src="calc.png" alt="">Calcular
+                    prejuízo</button></center><br>
 
-    <input type="text" id="ipt_hec" placeholder="Ex: 200">
-
-    <br><br>
-
-    <p>
-        Informe o valor de uma saca de café de 60 kg (R$):
-    </p>
-
-    <input type="text" id="ipt_fat" placeholder="Ex:  1800">
-
-    <br><br>
-
-    <p>
-        Você transforma o café colhido em produto final (líquido)
-        ou vende os grãos?
-    </p>
-
-    <select id="option_1">
-        <option disabled selected>Selecione...</option>
-        <option value="1">Transformo</option>
-        <option value="2">Vendo grãos</option>
-    </select>
-
-    <br><br>
-
-    <button onclick="calcular()">Calcular prejuízo</button>
-
-    <div id="div_exibir"></div>
-
+            <div id="div_exibir" class="container2"
+                style="font-weight: bold; color: #053600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Resultado:
+            </div>
+            <br>
+            <div class="container2">
+                <span style="font-weight: bold;">Sobre este cálculo:</span>
+                Este simulador estima o impacto financeiro na sua propriedade com base na projeção de perda média de
+                até <b>20%</b> para a safra de café arábica. Essa quebra é provocada por adversidades climáticas
+                severas,
+                como a seca prolongada, ondas de calor extremo e o baixo índice de umidade acumulada no solo, que
+                prejudicam diretamente o desenvolvimento dos grãos e o vigor das plantas.
+                <br><br><span style="font-weight: bold;">Fonte dos dados:</span>
+                Os índices de quebra e o monitoramento de campo são baseados nos levantamentos e pesquisas oficiais
+                do Sistema <b>FAEMG SENAR</b>, que acompanha o cenário hídrico e produtivo das principais regiões
+                cafeeiras
+                do estado.<br><br><b>Bibliografia:</b><br>
+                <a href="https://www.youtube.com/watch?v=lYAMIeUHmoY&t=7s" target="_blank">Sistema FAEMG prevê perda de safra de até 20%<br><img src="documentario.jpg" alt="" style="width: 100%;"></a>
+            </div>
+        </div>
 </body>
+<style>
+    body {
+        background-color: rgba(11, 129, 37, 0.137);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    p {
+        color: #053600;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+    }
+
+    h1 {
+        color: #053600;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        margin-bottom: 5rem;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .container {
+        border-radius: 5%;
+        outline-color: black;
+        width: 600px;
+        padding: 1rem;
+        height: 740px;
+        background-color: white;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.192),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+
+    input {
+        outline-style: solid;
+        outline-width: 1px;
+        border-radius: 0.25rem;
+        outline-color: #63b859bd;
+        border: none;
+        padding: 1rem;
+        width: 93%;
+        transition: 500ms;
+
+    }
+
+    input:hover {
+        transform: translateY(-6px);
+        transition: 500ms;
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.192),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .question {
+        background-color: rgba(11, 129, 37, 0.137);
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+
+    select:hover {
+        transform: translateY(-6px);
+        transition: 500ms;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.192),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    button:hover {
+        transform: translateY(-6px);
+        transition: 500ms;
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.192),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    select {
+        outline-style: solid;
+        outline-width: 1px;
+        border-radius: 0.25rem;
+        outline-color: #63b859bd;
+        border: none;
+        padding: 1rem;
+        width: 98%;
+        transition: 500ms;
+    }
+
+    button {
+        border: none;
+        color: white;
+        background-color: #053600;
+        border-radius: 0.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        padding: 1rem;
+        transition: 500ms;
+        margin-bottom: 50px;
+    }
+
+    .container2 {
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.192),
+            0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+        border-radius: 1.6rem;
+        width: 600px;
+        margin-left: -15px;
+        background-color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #053600;
+    }
+</style>
 <script>
 
-    function calcular () {
+    function calcular() {
 
-        let H = Number(ipt_hec.value)
-        let F = Number(ipt_fat.value)
+        let H = Number(ipt_hec.value);
+        let F = Number(ipt_fat.value);
 
-        let sacas = Number(H * 28,9)
-        let Faturamento = Number(F * (sacas * 60))
+        let sacas = Number(H * 28, 9);
+        let Faturamento = Number(F * (sacas * 60));
 
         // Quantidade total de sacas
-        let total_sacas = H * 28.9
+        let total_sacas = H * 28.9;
 
         // Preço de cada saca de 60 kg
-        let preco_saca = F
+        let preco_saca = F;
 
         // Faturamento total
-        let faturamento_total = total_sacas * preco_saca
+        let faturamento_total = total_sacas * preco_saca;
 
         // Prejuízo estimado de 20%
-        let prejuizo = faturamento_total * 0.20
+        let prejuizo = faturamento_total * 0.20;
 
-        div_exibir.innerHTML = `
+        if (F && H) {
+            div_exibir.innerHTML = `
 
-            <h2>Resultado da sua plantação</h2>
+                    <h2>Resultado da sua plantação</h2>
 
-            <p>
-                <b>Total de sacas produzidas:</b>
-                ${total_sacas.toFixed(2)} sacas
-            </p>
+                    <p>
+                        <b>Total de sacas produzidas:</b>
+                        ${total_sacas.toFixed(2)} sacas
+                    </p>
 
-            <p>
-                <b>Preço por saca de 60 kg:</b>
-                R$ ${preco_saca.toFixed(2)}
-            </p>
+                    <p>
+                        <b>Preço por saca de 60 kg:</b>
+                        R$ ${preco_saca.toFixed(2)}
+                    </p>
 
-            <p>
-                <b>Faturamento estimado:</b>
-                R$ ${faturamento_total.toFixed(2)}
-            </p>
+                    <p>
+                        <b>Faturamento estimado:</b>
+                        R$ ${faturamento_total.toFixed(2)}
+                    </p>
 
-            <p>
-                <b>Prejuízo estimado de 20%:</b>
-                R$ ${prejuizo.toFixed(2)}
-            </p>
+                    <p style="color: red;">
+                        <b>Prejuízo estimado de 20%:</b>
+                        R$ ${prejuizo.toFixed(2)}
+                    </p>
 
-        `
+                `;
+        } else {
+            div_exibir.innerHTML = `<p style="color: red;">Campos vazios</p>`;
+        }
     }
 
 </script>
