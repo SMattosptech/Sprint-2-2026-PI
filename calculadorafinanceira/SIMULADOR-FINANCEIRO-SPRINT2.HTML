@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+  <html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+
+    <h1>Cálculo da sua perda</h1>
+
+    <p>
+        Informe a área da sua plantação em hectares (ha):
+    </p>
+
+    <input type="text" id="ipt_hec" placeholder="Ex: 200">
+
+    <br><br>
+
+    <p>
+        Informe o valor de uma saca de café de 60 kg (R$):
+    </p>
+
+    <input type="text" id="ipt_fat" placeholder="Ex:  1800">
+
+    <br><br>
+
+    <p>
+        Você transforma o café colhido em produto final (líquido)
+        ou vende os grãos?
+
+
+    <select id="option_1">
+        <option disabled selected>Selecione...</option>
+        <option value="1">Transformo</option>
+        <option value="2">Vendo grãos</option>
+    </select>
+    
+
+    <br><br>
+
+    <button onclick="calcular()">Calcular prejuízo</button>
+
+    <div id="div_exibir"></div>
+
+</body>
+
+<script>
+
+    function calcular () {
+
+        let H = Number(ipt_hec.value)
+        let F = Number(ipt_fat.value)
+        let option = option_1.value
+
+        let sacas = Number(H * 28,9)
+        let Faturamento = Number(F * (sacas * 60))
+
+        // Quantidade total de sacas
+        let total_sacas = H * 28.9
+
+        // Preço de cada saca de 60 kg
+        let preco_saca = F
+
+        // Faturamento total
+        let faturamento_total = total_sacas * preco_saca
+
+        // Prejuízo estimado de 20%
+        let prejuizo = faturamento_total * 0.20
+
+        if(option == '1'){
+        let liquido = H * 28000
+        let cafetorrado = (liquido * 60) / 1000;
+        let fatliquido = cafetorrado * F
+        let perda = fatliquido * 0.2
+        let fattotal = fatliquido - perda 
+
+        div_exibir.innerHTML = `
+
+            <h2>Resultado da sua plantação</h2>
+
+        <p>
+            <b>Total de sacas produzidas:</b>
+            ${total_sacas.toFixed(2)} sacas
+        </p>
+
+        <p>
+            <b>Preço por saca de 60 kg:</b>
+            R$ ${preco_saca.toFixed(2)}
+        </p>
+
+        <p>
+            <b>Faturamento estimado:</b>
+            R$ ${faturamento_total.toFixed(2)}
+        </p>
+
+        <p>
+            <b>Prejuízo estimado de 20%:</b>
+            R$ ${prejuizo.toFixed(2)}
+        </p>
+
+        <p>
+            <b>Café líquido produzido:</b>
+            ${liquido.toFixed(2)} litros
+        </p>
+
+        <p>
+            <b>Café torrado:</b>
+            ${cafetorrado.toFixed(2)} kg
+        </p>
+
+        <p>
+            <b>Faturamento do café líquido SEM nosso produto:</b>
+            R$ ${fattotal.toFixed(2)}
+        </p>
+
+        <p>
+            <b>Faturamento COM o nosso produto:</b>
+            R$ ${fatliquido.toFixed(2)}
+        </p>
+
+        <p>
+            <b>Você está perdendo:</b>
+            R$ ${perda.toFixed(2)}
+
+    `
+        
+        }else{
+
+        div_exibir.innerHTML = `
+
+            <h2>Resultado da sua plantação</h2>
+
+            <p>
+                <b>Total de sacas produzidas:</b>
+                ${total_sacas.toFixed(2)} sacas
+            </p>
+
+            <p>
+                <b>Preço por saca de 60 kg:</b>
+                R$ ${preco_saca.toFixed(2)}
+            </p>
+
+            <p>
+                <b>Faturamento estimado:</b>
+                R$ ${faturamento_total.toFixed(2)}
+            </p>
+
+            <p>
+                <b>Prejuízo estimado de 20%:</b>
+                R$ ${prejuizo.toFixed(2)}
+            </p>
+        
+        `
+        }
+    }
+
+</script>
+
+</html>
