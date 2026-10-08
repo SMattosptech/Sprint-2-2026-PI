@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
         <br><br>
         <div>
             <center><button onclick="calcular()"><img style="width: 35px;" src="calc.png" alt="">Calcular
-                    prejuízo</button></center><br>
+                    prejuízo</button></center><br><br>
 
             <div id="div_exibir" class="container2"
                 style="font-weight: bold; color: #053600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -55,7 +55,8 @@
                 severas,
                 como a seca prolongada, ondas de calor extremo e o baixo índice de umidade acumulada no solo, que
                 prejudicam diretamente o desenvolvimento dos grãos e o vigor das plantas.
-                <br><br><span style="font-weight: bold;">Fonte dos dados:</span>
+                <br><p style="font-weight: lighter;">Para nos basearmos também consideramos que cada hectare produz <b>28.9</b> sacas de café.
+                </p><br><span style="font-weight: bold;">Fonte dos dados:</span>
                 Os índices de quebra e o monitoramento de campo são baseados nos levantamentos e pesquisas oficiais
                 do Sistema <b>FAEMG SENAR</b>, que acompanha o cenário hídrico e produtivo das principais regiões
                 cafeeiras
@@ -65,123 +66,6 @@
         </div>
 </body>
 <style>
-    body {
-        background-color: rgba(11, 129, 37, 0.137);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    p {
-        color: #053600;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: bold;
-    }
-
-    h1 {
-        color: #053600;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        display: flex;
-        margin-bottom: 5rem;
-        justify-content: center;
-        margin-bottom: 40px;
-    }
-
-    .container {
-        border-radius: 5%;
-        outline-color: black;
-        width: 600px;
-        padding: 1rem;
-        height: 740px;
-        background-color: white;
-
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.192),
-            0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-
-    input {
-        outline-style: solid;
-        outline-width: 1px;
-        border-radius: 0.25rem;
-        outline-color: #63b859bd;
-        border: none;
-        padding: 1rem;
-        width: 93%;
-        transition: 500ms;
-
-    }
-
-    input:hover {
-        transform: translateY(-6px);
-        transition: 500ms;
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.192),
-            0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .question {
-        background-color: rgba(11, 129, 37, 0.137);
-        padding: 1rem;
-        border-radius: 1rem;
-    }
-
-    select:hover {
-        transform: translateY(-6px);
-        transition: 500ms;
-
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.192),
-            0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    button:hover {
-        transform: translateY(-6px);
-        transition: 500ms;
-
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.192),
-            0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    select {
-        outline-style: solid;
-        outline-width: 1px;
-        border-radius: 0.25rem;
-        outline-color: #63b859bd;
-        border: none;
-        padding: 1rem;
-        width: 98%;
-        transition: 500ms;
-    }
-
-    button {
-        border: none;
-        color: white;
-        background-color: #053600;
-        border-radius: 0.25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: bold;
-        padding: 1rem;
-        transition: 500ms;
-        margin-bottom: 50px;
-    }
-
-    .container2 {
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.192),
-            0 2px 8px rgba(0, 0, 0, 0.05);
-        padding: 1rem;
-        border-radius: 1.6rem;
-        width: 600px;
-        margin-left: -15px;
-        background-color: white;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #053600;
-    }
 </style>
 <script>
 
