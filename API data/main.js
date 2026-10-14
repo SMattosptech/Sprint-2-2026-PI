@@ -20,9 +20,9 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'coffeecare',
+            user: 'coffeecare_api_insert',
             password: '123456',
-            database: 'quercofe',
+            database: 'coffeCare',
             port: 3306
         }
     ).promise();
@@ -54,7 +54,7 @@ const serial = async (
         const sensorUmidade = parseInt(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        //valoresSensorAnalogico.push(sensorAnalogico);//
+        //valoresSensorAnalogico.push(sensorUmidade);//
         valoresSensorUmidade.push(sensorUmidade);
 
         // insere os dados no banco de dados (se habilitado)
@@ -62,10 +62,10 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medida (sensor_umidade) VALUES (?)',
+                'INSERT INTO medicao (sensor_umidade) VALUES (?)',
                 [sensorUmidade]
             );
-            console.log("valores inseridos no banco: " + ", " + sensorUmidade);
+            console.log( sensorUmidade);
 
         }
 

@@ -11,38 +11,12 @@
     <h1>Graphics</h1>
         <div style="display: flex;">
         <div style="width: 50%;">
-            <canvas id="sensorAnalogico"></canvas>
-        </div>
-        <div style="width: 50%;">
-            <canvas id="sensorDigital"></canvas>
+            <canvas id="sensorUmidade"></canvas>
         </div>
     </div>
 
     <script>
-        // var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-        //     type: 'line',
-        //     data: {
-        //         datasets: [{
-        //             label: 'Analogico',
-        //             borderColor: '#63B1BC',
-        //             backgroundColor: '#ED145B'
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             x: {
-        //                 beginAtZero: true
-        //             },
-        //             y: {
-        //                 title: {
-        //                     display: true,
-        //                     text: '(%)'
-        //                 },
-        //                 beginAtZero: true,
-        //             },
-        //         },
-        //     }
-        // });
+
 
         var sensorUmidade = new Chart(document.getElementById('sensorUmidade').getContext('2d'), {
             type: 'line',
@@ -102,7 +76,7 @@
         }
 
         setInterval(() => {
-            //obterDados(sensorAnalogico, 'analogico');
+            //obterDados(sensorUmidade, 'umidade');
             obterDados(sensorUmidade, 'umidade');
         }, 1000);
 
