@@ -99,3 +99,10 @@ CREATE TABLE alerta (
         FOREIGN KEY (fk_medicao)
         REFERENCES medicao(id_medicao)
 );
+
+
+SELECT *
+FROM coffeCare.medicao
+ORDER BY id_medicao DESC;
+
+SHOW CREATE TABLE coffeCare.medicao;
