@@ -1,11 +1,20 @@
-CREATE USER 'coffeecare_api_insert'@'localhost'
+CREATE USER 'coffeecare_api_insert'@'%'
 IDENTIFIED BY '123456';
 
+CREATE USER 'root_coffecare4'@'%'
+IDENTIFIED BY '123456';
+
+ grant all privileges on coffeCare.* to 'root_coffecare'@'localhost';
+
 GRANT INSERT ON coffeCare.medicao
-TO 'coffeecare_api_insert'@'localhost';
+TO 'coffeecare_api_insert'@'%';
+
+SELECT USER, host from mysql.user where user = 'root_coffecare';
 
 FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'root_coffecare'@'%';
 
+GRANT ALL PRIVILEGES ON coffecare.* TO 'root_coffecare'@'%';
 
 
 CREATE DATABASE coffeCare;
