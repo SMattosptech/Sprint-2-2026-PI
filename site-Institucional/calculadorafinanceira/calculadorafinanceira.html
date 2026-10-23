@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cálculo da sua perda</h1>
+        <div class="question">
+            <p>
+                Informe a área da sua plantação em hectares (ha):
+            </p>
+            <input type="text" id="ipt_hec" placeholder="Ex: 200">
+        </div>
+        <br><br>
+        <div class="question">
+            <p>
+                Informe o valor de uma saca de café de 60 kg (R$):
+            </p>
+
+            <input type="text" id="ipt_fat" placeholder="Ex:  1800">
+        </div>
+        <br><br>
+        <div class="question">
+            <p>
+                Você transforma o café colhido em produto final (líquido)
+                ou vende os grãos?
+            </p>
+
+            <select id="option_1">
+                <option disabled selected ">Selecione...</option>
+                <option value=" 1">Transformo</option>
+                <option value="2">Vendo grãos</option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <center><button onclick="calcular()"><img style="width: 35px;" src="calc.png" alt="">Calcular
+                    prejuízo</button></center><br><br>
+
+            <div id="div_exibir" class="container2"
+                style="font-weight: bold; color: #053600; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                Resultado:
+            </div>
+            <br>
+            <div class="container2">
+                <span style="font-weight: bold;">Sobre este cálculo:</span>
+                Este simulador estima o impacto financeiro na sua propriedade com base na projeção de perda média de
+                até <b>20%</b> para a safra de café arábica. Essa quebra é provocada por adversidades climáticas
+                severas,
+                como a seca prolongada, ondas de calor extremo e o baixo índice de umidade acumulada no solo, que
+                prejudicam diretamente o desenvolvimento dos grãos e o vigor das plantas.
+                <br><p style="font-weight: lighter;">Para nos basearmos também consideramos que cada hectare produz <b>28.9</b> sacas de café.
+                </p><br><span style="font-weight: bold;">Fonte dos dados:</span>
+                Os índices de quebra e o monitoramento de campo são baseados nos levantamentos e pesquisas oficiais
+                do Sistema <b>FAEMG SENAR</b>, que acompanha o cenário hídrico e produtivo das principais regiões
+                cafeeiras
+                do estado.<br><br><b>Bibliografia:</b><br>
+                <a href="https://www.youtube.com/watch?v=lYAMIeUHmoY&t=7s" target="_blank">Sistema FAEMG prevê perda de safra de até 20%<br><img src="documentario.jpg" alt="" style="width: 100%;"></a>
+            </div>
+        </div>
+</body>
+<style>
+</style>
+<script>
+
+    function calcular() {
+
+        let H = Number(ipt_hec.value);
+        let F = Number(ipt_fat.value);
+
+        let sacas = Number(H * 28, 9);
+        let Faturamento = Number(F * (sacas * 60));
+
+        // Quantidade total de sacas
+        let total_sacas = H * 28.9;
+
+        // Preço de cada saca de 60 kg
+        let preco_saca = F;
+
+        // Faturamento total
+        let faturamento_total = total_sacas * preco_saca;
+
+        // Prejuízo estimado de 20%
+        let prejuizo = faturamento_total * 0.20;
+
+        if (F && H) {
+            div_exibir.innerHTML = `
+
+                    <h2>Resultado da sua plantação</h2>
+
+                    <p>
+                        <b>Total de sacas produzidas:</b>
+                        ${total_sacas.toFixed(2)} sacas
+                    </p>
+
+                    <p>
+                        <b>Preço por saca de 60 kg:</b>
+                        R$ ${preco_saca.toFixed(2)}
+                    </p>
+
+                    <p>
+                        <b>Faturamento estimado:</b>
+                        R$ ${faturamento_total.toFixed(2)}
+                    </p>
+
+                    <p style="color: red;">
+                        <b>Prejuízo estimado de 20%:</b>
+                        R$ ${prejuizo.toFixed(2)}
+                    </p>
+
+                `;
+        } else {
+            div_exibir.innerHTML = `<p style="color: red;">Campos vazios</p>`;
+        }
+    }
+
+</script>
+
+</html>
