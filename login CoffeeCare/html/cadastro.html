@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Sistema Estático</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Criar Conta</h2>
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="newUsername">Nome de Usuário</label>
+                <input type="text" id="newUsername" required>
+            </div>
+            <div class="input-group">
+                <label for="newEmail">E-mail</label>
+                <input type="email" id="newEmail" required>
+            </div>
+            <div class="input-group">
+                <label for="newTelefone">Telefone</label>
+                <input type="tel" id="newTelefone" required>
+            </div>
+            <div class="input-group">
+                <label for="newPassword">Senha</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <p id="registerError" class="error-message"></p>
+            <button type="submit">Cadastrar</button>
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="./index.html">Já tenho uma conta</a>
+            </p>
+        </form>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
