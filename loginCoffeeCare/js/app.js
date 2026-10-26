@@ -12,21 +12,21 @@ utilizadores[0] = admin;
 // MUDAR DE TELA (No index.html)
 // ==========================================
 function mostrarLogin() {
-    ecraLogin.style.display = 'block';
-    ecraRegisto.style.display = 'none';
-    ecraCarregamento.style.display = 'none';
+    telaLogin.style.display = 'block';
+    telaRegisto.style.display = 'none';
+    telaCarregamento.style.display = 'none';
 }
 
 function mostrarRegisto() {
-    ecraLogin.style.display = 'none';
-    ecraRegisto.style.display = 'block';
-    ecraCarregamento.style.display = 'none';
+    telaLogin.style.display = 'none';
+    telaRegisto.style.display = 'block';
+    telaCarregamento.style.display = 'none';
 }
 
 function mostrarCarregamento() {
-    ecraLogin.style.display = 'none';
-    ecraRegisto.style.display = 'none';
-    ecraCarregamento.style.display = 'block';
+    telaLogin.style.display = 'none';
+    telaRegisto.style.display = 'none';
+    telaCarregamento.style.display = 'block';
 }
 
 // ==========================================

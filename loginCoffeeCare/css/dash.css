@@ -501,6 +501,155 @@ body {
   display: none;
 }
 
+/* Layout em duas colunas, tudo em uma tela só (desktop) */
+@media (min-width: 1151px) {
+  .app {
+    height: 100vh;
+    overflow: hidden; /* sem rolagem da página */
+  }
+
+  .sidebar {
+    flex-shrink: 0;
+    padding: 10px 24px;
+  }
+
+  /* O .main vira uma grade: título em cima, KPIs + gráficos à esquerda, cards de baixo à direita */
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas:
+      "topbar topbar"
+      "kpis   side"
+      "charts side";
+    gap: 14px;
+    max-width: 1500px;
+    min-height: 0;
+    padding: 14px 38px 18px;
+  }
+
+  .topbar {
+    grid-area: topbar;
+    margin-bottom: 0;
+  }
+
+  .crumb {
+    margin-bottom: 2px;
+    font-size: 11px;
+  }
+
+  .topbar h1 {
+    font-size: 24px;
+  }
+
+  .topbar p {
+    margin-top: 2px;
+    font-size: 13px;
+  }
+
+  .status-pill {
+    top: 22px;
+    padding: 8px 12px;
+  }
+
+  .kpis {
+    grid-area: kpis;
+    gap: 14px;
+    margin-top: 0;
+  }
+
+  /* Linha dos gráficos (a .grid2 que não é a .bottom) */
+  .grid2:not(.bottom) {
+    grid-area: charts;
+    gap: 14px;
+    margin-top: 0;
+    min-height: 0;
+  }
+
+  /* As duas divs de baixo ficam empilhadas na coluna da direita */
+  .grid2.bottom {
+    grid-area: side;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 0;
+    min-height: 0;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .grid2 > .card {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .card-head {
+    flex-shrink: 0;
+    margin-bottom: 8px;
+  }
+
+  .kpi-label {
+    margin-bottom: 4px;
+  }
+
+  .kpi-value {
+    margin-bottom: 6px;
+    font-size: 24px;
+  }
+
+  /* Gráficos ocupam a altura disponível em vez de alturas fixas */
+  .chart-wrap {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .donut-wrap {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .legend {
+    flex-shrink: 0;
+    gap: 4px;
+    padding-top: 8px;
+  }
+
+  /* Tabela e alertas na coluna estreita: se não couber, rola dentro do card */
+  .table-head,
+  .row {
+    grid-template-columns: 1.3fr 1fr 0.8fr 1.1fr;
+    gap: 6px;
+  }
+
+  .table-head {
+    flex-shrink: 0;
+    padding: 6px 8px;
+  }
+
+  .row {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  #readings,
+  #alerts {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden; /* sem rolagem nenhuma */
+  }
+
+  .alert {
+    margin-bottom: 6px;
+    padding: 6px 12px;
+  }
+}
+
 @media (max-width: 1150px) {
   .kpis {
     grid-template-columns: repeat(2, 1fr);

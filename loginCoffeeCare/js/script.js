@@ -84,9 +84,19 @@ function renderDonut() {
       maintainAspectRatio: false,
       animation: false,
       plugins: {
-        legend: {
-          labels: { color: '#F0EEE8' },
-        },
+          legend: {
+      position: 'top',
+      align: 'center',
+      labels: {
+        color: '#F0EEE8',
+        usePointStyle: true,
+        pointStyle: 'circle',
+        boxWidth: 8,
+        boxHeight: 8,
+        padding: 14,
+        font: { size: 12 },
+      },
+    },
         customCanvasBackgroundColor: {
           color: 'rgba(255, 255, 255, 0.0)',
         },
