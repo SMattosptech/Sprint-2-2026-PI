@@ -4,157 +4,173 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Coffee Care - Visão geral</title>
+<!-- Liga o arquivo de estilos (cores, tamanhos, posições) -->
 <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+
+<!-- Caixa que envolve a página inteira -->
 <div class="app">
-  <aside class="sidebar">
+
+  <!-- ===================== BARRA SUPERIOR ===================== -->
+  <div class="sidebar">
+
+    <!-- Nome do sistema (esquerda) -->
     <div class="brand">
-      <div class="logo">☕</div>
-      <div>
-        <div class="brand-name">Coffee Care</div>
-        <div class="brand-sub">MONITORAMENTO</div>
-      </div>
+      <div class="brand-name">Coffee Care</div>
+      <div class="brand-sub">DASHBOARD</div>
     </div>
+
+    <!-- Texto pequeno "MENU PRINCIPAL" -->
     <div class="menu-label">MENU PRINCIPAL</div>
-    <nav class="menu">
-      <button class="menu-item active" data-view="overview"><span class="ico">▦</span>Visão Geral</button>
-    </nav>
+
+    <!-- Botões do menu. A classe "active" deixa o botão destacado -->
+    <div class="menu">
+      <div class="menu-item active">Visão Geral</div>
+    </div>
+
+    <!-- Usuário (canto direito): avatar + nome + empresa -->
     <div class="sidebar-foot">
-      <div class="avatar">CC</div>
+      <div class="avatar">👤</div>
       <div>
-        <div class="foot-name">Coffee Care</div>
-        <div class="foot-sub">Projeto de PI</div>
+        <div class="foot-name">Nome Usuario</div>
+        <div class="foot-sub">Nome Empresa</div>
       </div>
     </div>
-  </aside>
+  </div>
 
-  <main class="main">
-    <header class="topbar">
-      <div class="crumb">PAINEL DE CONTROLE  /  VISÃO GERAL</div>
-      <h1>Visão Geral</h1>
-      <p>Acompanhe a saúde da sua produção em tempo real.</p>
-    </header>
-    <div class="status-pill">
-      <span class="dot green"></span> Sistema operacional
+  <!-- ===================== CONTEÚDO ===================== -->
+  <div class="main">
+
+    <!-- Título da página -->
+    <div class="topbar">
+      <div class="crumb">PAINEL DE CONTROLE / VISÃO GERAL</div>
+      <div class="page-title">Visão Geral</div>
     </div>
 
-    <section class="kpis">
-      <div class="card kpi">
+    <!-- Aviso "Sistema operacional" (canto direito do título) -->
+    <div class="status-pill"><div class="dot green"></div>Sistema operacional</div>
+
+    <!-- ----- 4 CARTÕES DE RESUMO (kpis) -----
+         Cada cartão tem: nome, valor grande e uma observação com bolinha -->
+    <div class="kpis">
+      <div class="card">
         <div class="kpi-label">Umidade Atual</div>
-        <div class="kpi-value"><span id="kpi-temp">15</span><span class="unit">%</span></div>
-        <div class="kpi-tag green"><span class="dot-sm green"></span>Dentro do ideal</div>
+        <div class="kpi-value">15<div class="unit">%</div></div>
+        <div class="kpi-tag"><div class="dot-sm green"></div>Dentro do ideal</div>
       </div>
-      <div class="card kpi">
+      <div class="card">
         <div class="kpi-label">Sensores ativos</div>
-        <div class="kpi-value"><span id="kpi-active">08</span><span class="unit">/ 08</span></div>
-        <div class="kpi-tag green"><span class="dot-sm green"></span>Todos conectados</div>
+        <div class="kpi-value">08<div class="unit">/ 08</div></div>
+        <div class="kpi-tag"><div class="dot-sm green"></div>Todos conectados</div>
       </div>
-      <div class="card kpi">
+      <div class="card">
         <div class="kpi-label">Alertas hoje</div>
-        <div class="kpi-value"><span id="kpi-alerts">02</span></div>
-        <div class="kpi-tag green"><span class="dot-sm green"></span><span id="kpi-alerts-sub">1 em observação</span></div>
+        <div class="kpi-value">02</div>
+        <div class="kpi-tag"><div class="dot-sm green"></div>1 em observação</div>
       </div>
-      <div class="card kpi">
+      <div class="card">
         <div class="kpi-label">Talhão Selecionado</div>
-        <div class="kpi-value"><span id="kpi-econ">Talhão-01</span></div>
-        <div class="kpi-tag green"><span class="dot-sm green"></span>neste mês</div>
+        <div class="kpi-value">Talhão-01</div>
+        <div class="kpi-tag"><div class="dot-sm green"></div>neste mês</div>
       </div>
-    </section>
+    </div>
 
-    <section class="grid2">
-      <div class="card chart-card">
+    <!-- ----- LINHA DOS GRÁFICOS ----- -->
+    <div class="grid2">
+
+      <!-- Gráfico de linha (o desenho é feito pelo app.js) -->
+      <div class="card">
         <div class="card-head">
           <div>
-            <h2>Umidade ao longo do dia</h2>
-            <p>Leituras médias dos sensores (%)</p>
+            <div class="title">Umidade ao longo do dia</div>
+            <div class="sub">Leituras médias dos sensores (%)</div>
           </div>
+          <!-- Lista para escolher o sensor (id usado pelo app.js, não mude) -->
           <select id="period" class="select">
             <option value="24">Sensor-01</option>
             <option value="7">Sensor-02</option>
           </select>
         </div>
-        <div class="chart-wrap">
-          <canvas id="chart"></canvas>
-        </div>
+        <!-- id="chart": é aqui que o app.js desenha o gráfico de linha -->
+        <div class="chart-wrap"><canvas id="chart"></canvas></div>
       </div>
 
+      <!-- Gráfico de rosca + legenda com os números -->
       <div class="card">
         <div class="card-head">
           <div>
-            <h2>Status dos sensores</h2>
-            <p>Condição atual dos equipamentos</p>
+            <div class="title">Status dos sensores</div>
+            <div class="sub">Condição atual dos equipamentos</div>
           </div>
         </div>
-        <div class="donut-wrap">
-          <canvas id="donut-chart" class="donut"></canvas>
-        </div>
+        <!-- id="donut-chart": é aqui que o app.js desenha a rosca -->
+        <div class="donut-wrap"><canvas id="donut-chart" class="donut"></canvas></div>
+        <!-- Legenda: o app.js escreve os números nos ids cnt-normal, cnt-attn e cnt-crit -->
         <div class="legend">
-          <div class="legend-row"><span class="dot green"></span>Normal<span class="lval" id="cnt-normal">06</span></div>
-          <div class="legend-row"><span class="dot amber"></span>Atenção<span class="lval" id="cnt-attn">02</span></div>
-          <div class="legend-row"><span class="dot red"></span>Crítico<span class="lval" id="cnt-crit">00</span></div>
+          <div class="legend-row"><div class="dot green"></div>Normal<div class="lval" id="cnt-normal">06</div></div>
+          <div class="legend-row"><div class="dot amber"></div>Atenção<div class="lval" id="cnt-attn">02</div></div>
+          <div class="legend-row"><div class="dot red"></div>Crítico<div class="lval" id="cnt-crit">00</div></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="grid2 bottom">
+    <!-- ----- COLUNA DA DIREITA: LEITURAS E ALERTAS ----- -->
+    <div class="grid2 bottom">
+
+      <!-- Tabela de leituras. Cores do status: normal (verde), attn (amarelo), crit (vermelho) -->
       <div class="card">
         <div class="card-head">
           <div>
-            <h2>Leituras recentes</h2>
-            <p>Últimas atualizações recebidas</p>
+            <div class="title">Leituras recentes</div>
+            <div class="sub">Últimas atualizações recebidas</div>
           </div>
         </div>
+        <!-- Cabeçalho da tabela -->
         <div class="table-head">
-          <span>SENSOR</span><span>LOCAL</span><span>UMIDADE</span><span>STATUS</span>
+          <div>SENSOR</div><div>LOCAL</div><div>UMIDADE</div><div>STATUS</div>
         </div>
+        <!-- Linhas: para adicionar uma leitura, copie uma "row" inteira -->
         <div id="readings">
-        <div class="row">
-          <span>Umidade-01</span>
-          <span>Talhão 1</span>
-          <span style="font-weight:700">45%</span>
-          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
-        </div>
-        <div class="row">
-          <span>Umidade-02</span>
-          <span>Talhão 2</span>
-          <span style="font-weight:700">60%</span>
-          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip attn"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Atenção</span></span>
-        </div>
-        <div class="row">
-          <span>Umidade-03</span>
-          <span>Talhão 3</span>
-          <span style="font-weight:700">48%</span>
-          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
-        </div>
-        <div class="row">
-          <span>Umidade-04</span>
-          <span>Talhão 1</span>
-          <span style="font-weight:700">52%</span>
-          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
-        </div>
+          <div class="row">
+            <div>Umidade-01</div><div>Talhão 1</div><div>45%</div>
+            <div class="status-chip normal">● Normal</div>
+          </div>
+          <div class="row">
+            <div>Umidade-02</div><div>Talhão 2</div><div>60%</div>
+            <div class="status-chip attn">● Atenção</div>
+          </div>
+          <div class="row">
+            <div>Umidade-03</div><div>Talhão 3</div><div>48%</div>
+            <div class="status-chip normal">● Normal</div>
+          </div>
+          <div class="row">
+            <div>Umidade-04</div><div>Talhão 1</div><div>52%</div>
+            <div class="status-chip normal">● Normal</div>
+          </div>
         </div>
       </div>
 
+      <!-- Lista de alertas. "aico" é o ícone redondo (amber = aviso, green = ok) -->
       <div class="card">
         <div class="card-head">
           <div>
-            <h2>Alertas recentes</h2>
-            <p>Eventos que precisam de atenção</p>
+            <div class="title">Alertas recentes</div>
+            <div class="sub">Eventos que precisam de atenção</div>
           </div>
         </div>
         <div id="alerts">
           <div class="alert">
             <div class="aico amber">!</div>
-            <div style="flex:1">
+            <div>
               <div class="alert-title">Umidade elevada</div>
               <div class="alert-sub">Talhão 1 · 60%</div>
               <div class="alert-time">Há 4 minutos</div>
             </div>
           </div>
-          <div class="alert ok">
+          <div class="alert">
             <div class="aico green">✓</div>
-            <div style="flex:1">
+            <div>
               <div class="alert-title">Sistema conectado</div>
               <div class="alert-sub">Todos os sensores online</div>
               <div class="alert-time">Há 12 minutos</div>
@@ -162,11 +178,14 @@
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+
+  </div>
 </div>
 
+<!-- Biblioteca que desenha os gráficos (Chart.js) -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- Seu código que cria os gráficos -->
 <script src="app.js"></script>
 </body>
 </html>
