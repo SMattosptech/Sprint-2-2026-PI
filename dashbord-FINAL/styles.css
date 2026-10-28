@@ -1,582 +1,525 @@
 /* ============================================================
-   COFFEE CARE - ESTILOS DO DASHBOARD
-   Cada linha tem um comentário explicando o que ela faz.
-   (As linhas com só "}" fecham o bloco e não precisam de comentário.)
+   COFFEE CARE - ESTILOS DO DASHBOARD (layout só com Flexbox)
+
+   COMO O FLEXBOX FUNCIONA (o mesmo do exercício container1...6):
+   display: flex           liga o flexbox: os filhos ficam lado a lado
+   flex-direction: column  filhos um embaixo do outro (padrão = row, lado a lado)
+   justify-content         alinha na direção principal: start, end, center,
+                           space-between (um em cada ponta)
+   align-items             alinha na outra direção: flex-start, center, stretch
+   gap                     espaço entre os filhos
+   flex: 1                 o filho cresce e ocupa o espaço que sobrar
+   flex: 2 / flex: 1       divide o espaço em partes (2 partes + 1 parte)
+   flex-wrap: wrap         se não couber, o filho vai para a linha de baixo
+   margin-left: auto       empurra o filho para o canto direito
    ============================================================ */
-
-
-/* ============================================================
-   GLOSSÁRIO: FUNÇÕES USADAS NESTE ARQUIVO
-   (função = comando com parênteses, como var( ) ou rgba( ))
-
-   var(--nome)          "variable" (variável). Usa o valor guardado numa
-                        variável criada no :root. Mudou lá, muda em todo lugar.
-                        Ex: color: var(--text)
-
-   rgba(R, G, B, A)     "red, green, blue, alpha". Cria uma cor com a
-                        quantidade de vermelho, verde e azul (0 a 255).
-                        O último número (alpha) é a transparência:
-                        0 = invisível e 1 = totalmente visível.
-                        Ex: rgba(255, 255, 255, 0.08) = branco quase invisível
-
-   radial-gradient()    "degradê radial". Faz um degradê que começa no centro
-                        e se espalha em círculo, passando pelas cores da lista.
-                        Ex: o fundo verde da página (--bg)
-
-   repeat(N, medida)    "repetir". Repete a medida N vezes.
-                        Ex: repeat(4, 1fr) = 4 colunas iguais
-
-   minmax(mín, máx)     "mínimo e máximo". A coluna ou linha vai de um mínimo
-                        até um máximo. Com mínimo 0, o conteúdo não estica a
-                        coluna e não estoura a tela.
-                        Ex: minmax(0, 1fr)
-
-   blur(Npx)            "desfoque". Embaça a imagem. Dentro de backdrop-filter
-                        embaça o que está atrás do card (efeito de vidro fosco).
-
-   UNIDADES
-   px = pixels | fr = fração do espaço que sobrou (2fr 1fr = 2/3 e 1/3)
-   vh = % da altura da janela (100vh = tela inteira)
-
-   SELETORES COM PARÊNTESES (parecem funções, mas não são)
-   :nth-child(3)        "enésimo filho". Escolhe o 3º elemento dentro do pai.
-   :first-of-type       "primeiro do tipo". Escolhe só o primeiro elemento.
-   :root                elemento raiz da página (o <html>). Guarda as variáveis.
-   ============================================================ */
-
 
 /* ---------- 1. CORES (mude aqui e o site todo muda) ---------- */
-:root {                                  /* :root = elemento raiz da página. Variáveis criadas aqui valem para tudo */
-  --bg: radial-gradient(circle, #35503f, #243a2d, #1a2b21, #111d16); /* fundo da página. radial-gradient() = degradê que sai do centro para fora, passando pelas 4 cores */
-  --card: rgba(255, 255, 255, 0.08);     /* fundo dos cards. rgba(R,G,B,alpha): branco com alpha 0.08 = 8% visível */
-  --border: rgba(255, 255, 255, 0.15);   /* borda dos cards. rgba(): branco com alpha 0.15 = 15% visível */
-  --text: #F0EEE8;                       /* texto principal (creme claro) */
-  --muted: #FFF9ED;                      /* texto secundário */
-  --light: #B8C6B8;                      /* texto mais apagado (verde acinzentado) */
-  --cream: #FFF9ED;                      /* texto da barra superior */
-  --accent: #D6A85D;                     /* dourado (destaques) */
-  --amber: #D8A65A;                      /* amarelo (atenção) */
-  --green: #6D946B;                      /* verde (normal) */
-  --green2: #405344;                     /* verde escuro (caixas) */
-  --green3: #46aa5c;                     /* verde claro (bolinhas) */
-  --red: #C96A55;                        /* vermelho (crítico) */
-  --active: #3B5543;                     /* fundo do botão ativo do menu */
-  --gap: 14px;                           /* espaço entre os cards */
+:root {
+    --bg: radial-gradient(circle, #35503f, #243a2d, #1a2b21, #111d16); /* fundo da página */
+    --card: rgba(255, 255, 255, 0.08);   /* fundo dos cards */
+    --border: rgba(255, 255, 255, 0.15); /* borda dos cards */
+    --text: #F0EEE8;                     /* texto principal */
+    --muted: #FFF9ED;                    /* texto secundário */
+    --light: #B8C6B8;                    /* texto mais apagado */
+    --cream: #FFF9ED;                    /* texto da barra superior */
+    --accent: #D6A85D;                   /* dourado (destaques) */
+    --amber: #D8A65A;                    /* amarelo (atenção) */
+    --green: #6D946B;                    /* verde (normal) */
+    --green2: #405344;                   /* verde escuro (caixas) */
+    --green3: #46aa5c;                   /* verde claro (bolinhas) */
+    --red: #C96A55;                      /* vermelho (crítico) */
+    --active: #3B5543;                   /* botão ativo do menu */
+    --gap: 14px;                         /* espaço entre os cards */
 }
-
 
 /* ---------- 2. BASE ---------- */
 
 /* Tira as margens padrão do navegador de todos os elementos */
-* {                                      /* "*" = todos os elementos da página */
-  box-sizing: border-box;                /* largura e altura já incluem borda e espaço interno */
-  margin: 0;                             /* zera a margem externa */
-  padding: 0;                            /* zera o espaço interno */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Fonte, fundo e cor do texto da página */
-body {                                   /* corpo da página */
-  font-family: Arial, Helvetica, sans-serif; /* tipo de letra (se não tiver Arial, usa a próxima) */
-  background: var(--bg);                 /* var() = busca o valor da variável --bg (o degradê) */
-  background-attachment: fixed;          /* o fundo fica parado quando a página rola */
-  color: var(--text);                    /* cor padrão do texto */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
 }
 
 /* Caixa da página: ocupa exatamente a altura da tela (sem rolagem) */
-.app {                                   /* caixa que envolve tudo */
-  display: flex;                         /* organiza os filhos com flexbox */
-  flex-direction: column;                /* filhos um embaixo do outro (barra, depois conteúdo) */
-  height: 100vh;                         /* altura = 100% da altura da janela */
-  overflow: hidden;                      /* esconde o que passar da tela (sem barra de rolagem) */
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
 }
-
 
 /* ---------- 3. BARRA SUPERIOR ---------- */
 
 /* A barra: coloca tudo em uma linha */
-.sidebar {                               /* a barra superior */
-  display: flex;                         /* itens lado a lado */
-  align-items: center;                   /* centraliza os itens na vertical */
-  gap: 24px;                             /* espaço entre os itens */
-  flex-shrink: 0;                        /* a barra nunca é espremida */
-  padding: 10px 24px;                    /* espaço interno: 10px em cima/baixo, 24px nos lados */
-  background: rgba(8, 20, 14, 0.55);     /* rgba(): verde bem escuro com alpha 0.55 = meio transparente */
-  border-bottom: 1px solid rgba(214, 168, 93, 0.18); /* linha dourada fininha embaixo. rgba(): dourado com alpha 0.18 (bem suave) */
-  color: var(--cream);                   /* cor do texto da barra */
+.sidebar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+    padding: 10px 24px;
+    background: rgba(8, 20, 14, 0.55);
+    border-bottom: 1px solid rgba(214, 168, 93, 0.18);
+    color: var(--cream);
 }
 
 /* Nome do sistema (com linha vertical à direita) */
-.brand {                                 /* bloco "Coffee Care + DASHBOARD" */
-  display: flex;                         /* usa flexbox */
-  flex-direction: column;                /* nome em cima, DASHBOARD embaixo */
-  padding-right: 24px;                   /* espaço entre o texto e a linha vertical */
-  border-right: 1px solid #2f4a3a;       /* linha vertical que separa do menu */
+.brand {
+    display: flex;
+    flex-direction: column;
+    padding-right: 24px;
+    border-right: 1px solid #2f4a3a;
 }
 
-.brand-name {                            /* texto "Coffee Care" */
-  width: 90px;          /* largura pequena faz "Coffee Care" quebrar em 2 linhas */
-  font-size: 26px;                       /* tamanho da letra */
-  line-height: 1.05;                     /* altura da linha (junta as 2 linhas) */
-  font-weight: 700;                      /* negrito */
+.brand-name {
+    width: 90px;          /* largura pequena faz "Coffee Care" quebrar em 2 linhas */
+    font-size: 26px;
+    line-height: 1.05;
+    font-weight: 700;
 }
 
-.brand-sub {                             /* texto "DASHBOARD" */
-  margin-top: 3px;                       /* pequeno espaço acima */
-  font-size: 15px;                       /* tamanho da letra */
-  letter-spacing: 4px;                   /* espaço entre as letras */
-  color: var(--accent);                  /* cor dourada */
-  text-align: right;                     /* alinha o texto à direita */
+.brand-sub {
+    margin-top: 3px;
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-align: right;
 }
 
 /* Texto pequeno "MENU PRINCIPAL" */
-.menu-label {                            /* rótulo do menu */
-  font-size: 10px;                       /* letra pequena */
-  font-weight: 700;                      /* negrito */
-  letter-spacing: 1.8px;                 /* espaço entre as letras */
-  color: var(--light);                   /* cor apagada */
+.menu-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: var(--light);
 }
 
 /* Lista de botões do menu */
-.menu {                                  /* caixa que guarda os botões */
-  display: flex;                         /* botões lado a lado */
-  gap: 6px;                              /* espaço entre os botões */
+.menu {
+    display: flex;
+    gap: 6px;
 }
 
 /* Cada botão do menu */
-.menu-item {                             /* um botão do menu */
-  padding: 12px 20px;                    /* espaço interno: 12px em cima/baixo, 20px nos lados */
-  border-bottom: 2px solid transparent;  /* linha embaixo invisível (fica dourada no ativo) */
-  border-radius: 10px;                   /* cantos arredondados */
-  font-size: 15px;                       /* tamanho da letra */
-  cursor: pointer;                       /* mostra a "mãozinha" ao passar o mouse */
+.menu-item {
+    padding: 12px 20px;
+    border-bottom: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 /* Botão ativo: fundo verde, linha e texto dourados */
-.menu-item.active {                      /* botão com as duas classes: menu-item e active */
-  background: var(--active);             /* fundo verde */
-  border-bottom-color: var(--accent);    /* a linha de baixo fica dourada */
-  color: #E9D7B4;                        /* texto dourado claro */
-  font-weight: 700;                      /* negrito */
+.menu-item.active {
+    background: var(--active);
+    border-bottom-color: var(--accent);
+    color: #E9D7B4;
+    font-weight: 700;
 }
 
 /* Usuário: margin-left:auto empurra para o canto direito */
-.sidebar-foot {                          /* bloco do usuário */
-  display: flex;                         /* avatar e textos lado a lado */
-  align-items: center;                   /* centraliza na vertical */
-  gap: 12px;                             /* espaço entre avatar e textos */
-  margin-left: auto;                     /* empurra o bloco para o canto direito da barra */
+.sidebar-foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
 }
 
 /* Círculo dourado do usuário */
-.avatar {                                /* círculo com a foto/ícone */
-  display: grid;                         /* usa grid para centralizar o conteúdo */
-  place-items: center;                   /* centraliza o conteúdo (horizontal e vertical) */
-  width: 44px;                           /* largura */
-  height: 44px;                          /* altura (igual à largura = círculo) */
-  border-radius: 50%;                    /* 50% deixa o quadrado redondo */
-  background: var(--accent);             /* fundo dourado */
-  color: #243A2D;                        /* cor da letra (verde escuro) */
-  font-size: 15px;                       /* tamanho da letra */
-  font-weight: 700;                      /* negrito */
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #243A2D;
+    font-size: 15px;
+    font-weight: 700;
 }
 
-.foot-name {                             /* nome do usuário */
-  font-size: 15px;                       /* tamanho da letra */
-  font-weight: 700;                      /* negrito */
+.foot-name {
+    font-size: 15px;
+    font-weight: 700;
 }
 
-.foot-sub {                              /* nome da empresa */
-  font-size: 12px;                       /* letra menor */
-  color: var(--light);                   /* cor apagada */
+.foot-sub {
+    font-size: 12px;
+    color: var(--light);
 }
 
-
-/* ---------- 4. ÁREA DO CONTEÚDO (grade com 2 colunas) ----------
-   Esquerda: título, cartões de resumo e gráficos
-   Direita (400px): leituras e alertas */
-.main {                                  /* área abaixo da barra superior */
-  position: relative;                    /* serve de referência para o "Sistema operacional" */
-  flex: 1;                               /* ocupa todo o espaço que sobrar na altura */
-  min-height: 0;                         /* permite encolher (evita estourar a tela) */
-  width: 100%;                           /* ocupa toda a largura */
-  max-width: 1500px;                     /* mas nunca passa de 1500px */
-  margin: 0 auto;                        /* centraliza na horizontal */
-  padding: 14px 38px 18px;               /* espaço interno: cima 14, lados 38, baixo 18 */
-  display: grid;                         /* organiza em grade (linhas e colunas) */
-  grid-template-columns: minmax(0, 1fr) 400px; /* esquerda flexível, direita com 400px. minmax(0,1fr) = de 0 até 1 fração do espaço */
-  grid-template-rows: auto auto minmax(0, 1fr); /* linhas 1 e 2 pelo conteúdo; linha 3 usa minmax(0,1fr) e pega o resto */
-  grid-template-areas:                   /* desenho da grade, com o nome de cada área: */
-    "topbar topbar"                      /* linha 1: título ocupa as 2 colunas */
-    "kpis   side"                        /* linha 2: resumos à esquerda, lateral à direita */
-    "charts side";                       /* linha 3: gráficos à esquerda, lateral à direita */
-  gap: var(--gap);                       /* espaço entre as áreas. var() usa o valor de --gap (14px) */
+/* ---------- 4. ÁREA DO CONTEÚDO ----------
+   .main    = título em cima, conteúdo embaixo (coluna)
+   .content = esquerda (.left) e direita (.side), lado a lado (linha)
+   .left    = cartões de resumo em cima, gráficos embaixo (coluna)
+   .side    = leituras em cima, alertas embaixo (coluna, 400px) */
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 14px 38px 18px;
 }
 
+.content {
+    display: flex;
+    gap: var(--gap);
+    flex: 1;
+    min-height: 0;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    flex: 1;
+    min-width: 0;
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: 400px;
+    min-height: 0;
+}
 
 /* ---------- 5. TÍTULO DA PÁGINA ---------- */
-.topbar {                                /* bloco do título */
-  grid-area: topbar;                     /* posiciona na área "topbar" da grade */
-}
-
 .crumb {                 /* "PAINEL DE CONTROLE / VISÃO GERAL" */
-  margin-bottom: 2px;                    /* pequeno espaço embaixo */
-  font-size: 11px;                       /* letra pequena */
-  color: var(--muted);                   /* cor secundária */
+    margin-bottom: 2px;
+    font-size: 11px;
+    color: var(--muted);
 }
 
 .page-title {            /* "Visão Geral" */
-  font-size: 24px;                       /* letra grande */
-  font-weight: 700;                      /* negrito */
+    font-size: 24px;
+    font-weight: 700;
 }
 
 /* Aviso "Sistema operacional" no canto direito */
-.status-pill {                           /* caixinha do aviso */
-  position: absolute;                    /* posição livre dentro do .main */
-  top: 22px;                             /* 22px distante do topo */
-  right: 38px;                           /* 38px distante da direita */
-  display: flex;                         /* bolinha e texto lado a lado */
-  align-items: center;                   /* centraliza na vertical */
-  gap: 8px;                              /* espaço entre bolinha e texto */
-  padding: 9px 13px;                     /* espaço interno */
-  border-radius: 9px;                    /* cantos arredondados */
-  background: var(--green2);             /* fundo verde escuro */
-  font-size: 12px;                       /* tamanho da letra */
-  color: #E9D7B4;                        /* texto dourado claro */
+.status-pill {
+    position: absolute;
+    top: 22px;
+    right: 38px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 13px;
+    border-radius: 9px;
+    background: var(--green2);
+    font-size: 12px;
+    color: #E9D7B4;
 }
 
-
 /* ---------- 6. CARD (a caixa usada em tudo) ---------- */
-.card {                                  /* caixa padrão com fundo e borda */
-  padding: 16px;                         /* espaço interno */
-  border: 1px solid var(--border);       /* borda fininha */
-  border-radius: 12px;                   /* cantos arredondados */
-  background: var(--card);               /* fundo branco transparente */
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); /* sombra embaixo. rgba(): preto com alpha 0.25 = 25% visível */
-  backdrop-filter: blur(6px);            /* blur() = desfoque. Embaça o que está atrás do card (vidro fosco) */
+.card {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
 }
 
 /* Topo do card: título à esquerda, seletor à direita */
-.card-head {                             /* cabeçalho do card */
-  display: flex;                         /* título e seletor lado a lado */
-  justify-content: space-between;        /* um em cada ponta */
-  align-items: flex-start;               /* alinha no topo */
-  flex-shrink: 0;                        /* nunca é espremido */
-  margin-bottom: 8px;                    /* espaço embaixo */
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+    margin-bottom: 8px;
 }
 
-.title {                                 /* título do card */
-  font-size: 17px;                       /* tamanho da letra */
-  font-weight: 700;                      /* negrito */
+.title {
+    font-size: 17px;
+    font-weight: 700;
 }
 
-.sub {                                   /* subtítulo do card */
-  margin-top: 4px;                       /* espaço acima */
-  font-size: 12px;                       /* letra menor */
-  color: var(--muted);                   /* cor secundária */
+.sub {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
 }
 
 /* Lista "Sensor-01 / Sensor-02" */
-.select {                                /* caixa de seleção */
-  padding: 6px 10px;                     /* espaço interno */
-  border: 1px solid var(--border);       /* borda fininha */
-  border-radius: 7px;                    /* cantos arredondados */
-  background: var(--green2);             /* fundo verde escuro */
-  font-size: 10px;                       /* letra pequena */
-  color: #E9D7B4;                        /* texto dourado claro */
+.select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--green2);
+    font-size: 10px;
+    color: #E9D7B4;
 }
 
-
 /* ---------- 7. CARTÕES DE RESUMO (os 4 de cima) ---------- */
-.kpis {                                  /* linha com os 4 cartões */
-  grid-area: kpis;                       /* posiciona na área "kpis" da grade */
-  display: grid;                         /* organiza em grade */
-  grid-template-columns: repeat(4, 1fr);   /* repeat() = repete a medida 4 vezes: 4 colunas iguais de 1fr */
-  gap: var(--gap);                       /* espaço entre os cartões */
+.kpis {
+    display: flex;
+    gap: var(--gap);
+}
+
+.kpis > .card {
+    flex: 1;                 /* os 4 cartões dividem o espaço em partes iguais */
+    min-width: 0;
 }
 
 .kpi-label {             /* nome: "Umidade Atual" */
-  margin-bottom: 4px;                    /* espaço embaixo */
-  font-size: 13px;                       /* tamanho da letra */
-  color: var(--muted);                   /* cor secundária */
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--muted);
 }
 
 .kpi-value {             /* número grande */
-  display: flex;                         /* número e unidade lado a lado */
-  align-items: baseline;                 /* alinha pela base do texto */
-  margin-bottom: 6px;                    /* espaço embaixo */
-  font-size: 24px;                       /* número grande */
-  font-weight: 700;                      /* negrito */
-  color: var(--accent);                  /* dourado */
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
 }
 
 .unit {                  /* "%" ou "/ 08" ao lado do número */
-  margin-left: 4px;                      /* espaço à esquerda */
-  font-size: 14px;                       /* menor que o número */
-  color: var(--muted);                   /* cor secundária */
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--muted);
 }
 
 .kpi-tag {               /* observação com bolinha */
-  display: flex;                         /* bolinha e texto lado a lado */
-  align-items: center;                   /* centraliza na vertical */
-  gap: 6px;                              /* espaço entre bolinha e texto */
-  font-size: 11px;                       /* letra pequena */
-  color: var(--muted);                   /* cor secundária */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
 }
-
 
 /* ---------- 8. LINHAS DE CARDS ---------- */
 
-/* .grid2 = linha dos gráficos (2/3 + 1/3 da largura) */
-.grid2 {                                 /* linha com 2 cards lado a lado */
-  grid-area: charts;                     /* posiciona na área "charts" da grade */
-  display: grid;                         /* organiza em grade */
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* minmax(0,2fr) e minmax(0,1fr): 1º card com o dobro da largura do 2º */
-  gap: var(--gap);                       /* espaço entre os cards */
-  min-height: 0;                         /* permite encolher na altura */
+/* .charts = linha dos gráficos: lado a lado, o 1º com 2 partes e o 2º com 1 parte */
+.charts {
+    display: flex;
+    gap: var(--gap);
+    flex: 1;
+    min-height: 0;
 }
 
-/* .bottom = coluna da direita: Leituras em cima e Alertas embaixo */
-.bottom {                                /* usado junto com .grid2 no bloco da direita */
-  grid-area: side;                       /* posiciona na área "side" (coluna direita) */
-  grid-template-columns: minmax(0, 1fr); /* minmax(0,1fr): só 1 coluna (os cards ficam empilhados) */
-  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); /* 2 minmax() iguais = 2 linhas com a mesma altura */
+.charts > .card {
+    flex: 1;
 }
 
-/* Os cards dessas linhas empilham o conteúdo e esticam até o fim */
-.grid2 > .card {                         /* cards que são filhos diretos de .grid2 */
-  display: flex;                         /* usa flexbox */
-  flex-direction: column;                /* conteúdo um embaixo do outro */
-  min-height: 0;                         /* permite encolher na altura */
+.charts > .card:first-child {
+    flex: 2;
 }
 
+/* .side = coluna da direita: os 2 cards ocupam metade da altura cada um */
+.side > .card {
+    flex: 1;
+}
+
+/* Todos esses cards empilham o conteúdo (título, gráfico, legenda...) */
+.charts > .card,
+.side > .card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+}
 
 /* ---------- 9. GRÁFICOS ---------- */
 
 /* Caixa do gráfico de linha (flex:1 = ocupa o espaço que sobrar) */
-.chart-wrap {                            /* caixa onde o gráfico de linha é desenhado */
-  position: relative;                    /* necessário para o Chart.js dimensionar o gráfico */
-  flex: 1;                               /* ocupa todo o espaço livre do card */
-  min-height: 0;                         /* permite encolher na altura */
-  border-radius: 8px;                    /* cantos arredondados */
-  background: var(--green2);             /* fundo verde escuro */
+.chart-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    border-radius: 8px;
+    background: var(--green2);
 }
 
 /* Caixa do gráfico de rosca */
-.donut-wrap {                            /* caixa onde a rosca é desenhada */
-  position: relative;                    /* necessário para o Chart.js dimensionar o gráfico */
-  display: flex;                         /* usa flexbox */
-  justify-content: center;               /* centraliza na horizontal */
-  align-items: center;                   /* centraliza na vertical */
-  flex: 1;                               /* ocupa todo o espaço livre do card */
-  min-height: 0;                         /* permite encolher na altura */
+.donut-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
 }
 
-#chart,                                  /* "#" = elemento com id="chart" (gráfico de linha) */
-.donut {                                 /* "." = elemento com class="donut" (rosca) */
-  width: 100%;                           /* ocupa toda a largura da caixa */
-  height: 100%;                          /* ocupa toda a altura da caixa */
+#chart,
+.donut {
+    width: 100%;
+    height: 100%;
 }
 
 /* Legenda embaixo da rosca: Normal / Atenção / Crítico */
-.legend {                                /* bloco da legenda */
-  display: flex;                         /* usa flexbox */
-  flex-direction: column;                /* linhas uma embaixo da outra */
-  gap: 4px;                              /* espaço entre as linhas */
-  flex-shrink: 0;                        /* nunca é espremido */
-  padding-top: 8px;                      /* espaço acima */
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+    padding-top: 8px;
 }
 
-.legend-row {                            /* uma linha da legenda */
-  display: flex;                         /* bolinha, nome e número lado a lado */
-  align-items: center;                   /* centraliza na vertical */
-  gap: 8px;                              /* espaço entre os itens */
-  font-size: 12px;                       /* tamanho da letra */
-  color: #E9D7B4;                        /* texto dourado claro */
+.legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #E9D7B4;
 }
 
 .lval {                  /* número à direita da legenda */
-  margin-left: auto;                     /* empurra o número para a ponta direita */
-  font-size: 13px;                       /* tamanho da letra */
-  font-weight: 700;                      /* negrito */
-  color: var(--text);                    /* cor do texto principal */
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
 }
 
 /* Bolinhas coloridas (.dot = grande, .dot-sm = pequena) */
-.dot {                                   /* bolinha grande */
-  width: 10px;                           /* largura */
-  height: 10px;                          /* altura */
-  border-radius: 50%;                    /* deixa redonda */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
 }
 
-.dot-sm {                                /* bolinha pequena */
-  width: 8px;                            /* largura */
-  height: 8px;                           /* altura */
-  border-radius: 50%;                    /* deixa redonda */
+.dot-sm {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 
-.green { background: var(--green3); }    /* classe "green": fundo verde claro */
-.amber { background: var(--amber); }     /* classe "amber": fundo amarelo */
-.red   { background: var(--red); }       /* classe "red": fundo vermelho */
+.green { background: var(--green3); }
+.amber { background: var(--amber); }
+.red   { background: var(--red); }
 .dot-sm.green { background: #6E986E; }   /* verde um pouco mais suave nos cartões de resumo */
-
 
 /* ---------- 10. TABELA "LEITURAS RECENTES" ---------- */
 
 /* Cabeçalho e linhas usam 4 colunas (Sensor, Local, Umidade, Status) */
-.table-head,                             /* vale para o cabeçalho da tabela... */
-.row {                                   /* ...e para cada linha da tabela */
-  display: grid;                         /* organiza em grade */
-  grid-template-columns: 1.3fr 1fr 0.8fr 1.1fr; /* largura relativa das 4 colunas */
-  gap: 6px;                              /* espaço entre as colunas */
+.table-head,
+.row {
+    display: flex;
+    gap: 6px;
 }
 
-.table-head {                            /* cabeçalho: SENSOR, LOCAL, UMIDADE, STATUS */
-  flex-shrink: 0;                        /* nunca é espremido */
-  margin-bottom: 6px;                    /* espaço embaixo */
-  padding: 6px 8px;                      /* espaço interno */
-  border-radius: 5px;                    /* cantos arredondados */
-  background: var(--green2);             /* fundo verde escuro */
-  font-size: 11px;                       /* letra pequena */
-  font-weight: 700;                      /* negrito */
-  color: var(--amber);                   /* texto amarelo */
+/* Cabeçalho e linhas: 4 colunas lado a lado */
+.table-head,
+.row {
+    display: flex;               /* coloca as colunas lado a lado */
 }
 
-.row {                                   /* uma linha da tabela */
-  align-items: center;                   /* centraliza o conteúdo na vertical */
-  padding: 5px 8px;                      /* espaço interno */
-  border-top: 1px solid var(--text);   /* linha entre as leituras */
-  font-size: 11px;                       /* tamanho da letra */
+.table-head > div,
+.row > div {
+    flex: 1;                     /* todas as colunas dividem o espaço igualmente */
 }
 
-.row:first-of-type {                     /* :first-of-type = "primeiro do tipo": só a primeira linha */
-  border-top: 0;                       /* a primeira não tem linha em cima */
+.table-head {
+    flex-shrink: 0;
+    margin-bottom: 6px;
+     justify-content: center; 
+    border-radius: 5px;
+    background: var(--green2);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--amber);
 }
 
-.row > div:nth-child(3) {              /* :nth-child(3) = "3º filho": a 3ª coluna (Umidade) em negrito */
-  font-weight: 700;                      /* negrito */
+.row {
+    align-items: center;
+    padding: 5px 8px;
+    border-top: 1px solid var(--text);   /* linha entre as leituras */
+    font-size: 11px;
+}
+
+.row:first-of-type {
+    border-top: 0;                       /* a primeira não tem linha em cima */
+}
+
+.row > div:nth-child(3) {              /* 3ª coluna (Umidade) em negrito */
+    font-weight: 700;
 }
 
 /* Etiqueta de status: normal (verde), attn (amarelo), crit (vermelho) */
-.status-chip {                           /* etiqueta arredondada do status */
-  justify-self: start;                   /* mantém a etiqueta pequena, colada à esquerda da coluna */
-  display: inline-flex;                  /* ocupa só o tamanho do conteúdo */
-  align-items: center;                   /* centraliza na vertical */
-  gap: 6px;                              /* espaço entre itens */
-  padding: 4px 10px;                     /* espaço interno */
-  border-radius: 11px;                   /* bem arredondada */
-  font-size: 10px;                       /* letra pequena */
+.status-chip {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border-radius: 11px;
+    font-size: 10px;
 }
 
-.normal { background: rgba(109, 148, 107, 0.14); color: var(--green); } /* normal: fundo e texto verdes */
-.attn   { background: rgba(216, 166, 90, 0.14);  color: var(--amber); } /* atenção: fundo e texto amarelos */
-.crit   { background: rgba(201, 106, 85, 0.14);  color: var(--red); }   /* crítico: fundo e texto vermelhos */
+.normal { background: rgba(109, 148, 107, 0.14); color: var(--green); }
+.attn   { background: rgba(216, 166, 90, 0.14);  color: var(--amber); }
+.crit   { background: rgba(201, 106, 85, 0.14);  color: var(--red); }
 
 /* As duas listas ocupam o espaço que sobrar no card e não rolam */
-#readings,                               /* lista de leituras (id="readings") */
-#alerts {                                /* lista de alertas (id="alerts") */
-  flex: 1;                               /* ocupa o espaço que sobrar no card */
-  min-height: 0;                         /* permite encolher na altura */
-  overflow: hidden;                      /* esconde o que não couber (sem barra de rolagem) */
+#readings,
+#alerts {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
-
 
 /* ---------- 11. ALERTAS RECENTES ---------- */
 
 /* Cada alerta: ícone à esquerda, textos à direita */
-.alert {                                 /* caixa de um alerta */
-  display: flex;                         /* ícone e textos lado a lado */
-  align-items: flex-start;               /* alinha no topo */
-  gap: 12px;                             /* espaço entre ícone e textos */
-  margin-bottom: 6px;                    /* espaço entre um alerta e o próximo */
-  padding: 6px 12px;                     /* espaço interno */
-  border-radius: 9px;                    /* cantos arredondados */
-  background: var(--green2);             /* fundo verde escuro */
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+    padding: 6px 12px;
+    border-radius: 9px;
+    background: var(--green2);
 }
 
 /* Ícone redondo (! ou ✓) */
-.aico {                                  /* ícone redondo do alerta */
-  display: grid;                         /* usa grid para centralizar o símbolo */
-  place-items: center;                   /* centraliza o símbolo */
-  flex-shrink: 0;                        /* o ícone nunca é espremido */
-  width: 16px;                           /* largura */
-  height: 16px;                          /* altura */
-  margin-top: 2px;                       /* alinha com a primeira linha de texto */
-  border-radius: 50%;                    /* deixa redondo */
-  color: #FFFFFF;                        /* símbolo branco */
-  font-size: 11px;                       /* tamanho do símbolo */
-  font-weight: 700;                      /* negrito */
+.aico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
 }
 
-.aico.amber { background: var(--amber); } /* ícone de aviso: fundo amarelo */
-.aico.green { background: var(--green); } /* ícone de ok: fundo verde */
+.aico.amber { background: var(--amber); }
+.aico.green { background: var(--green); }
 
-.alert-title {                           /* título do alerta */
-  margin-bottom: 2px;                    /* espaço embaixo */
-  font-size: 12px;                       /* tamanho da letra */
-  font-weight: 700;                      /* negrito */
+.alert-title {
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
-.alert-sub {                             /* detalhe do alerta */
-  font-size: 11px;                       /* letra menor */
-  color: #e6e4df;                        /* cinza claro */
+.alert-sub {
+    font-size: 11px;
+    color: #e6e4df;
 }
 
-.alert-time {                            /* "Há 4 minutos" */
-  margin-top: 2px;                       /* espaço acima */
-  font-size: 10px;                       /* letra pequena */
-  color: #6de871;                        /* verde claro */
-}
-
-
-/* ---------- 12. TELAS PEQUENAS (menos de 1150px) ----------
-   Desfaz o layout "tudo em uma tela": empilha os blocos e libera a rolagem */
-@media (max-width: 1150px) {             /* tudo aqui dentro só vale se a tela tiver até 1150px */
-  .app {                                 /* caixa da página */
-    height: auto;                        /* altura livre (cresce com o conteúdo) */
-    min-height: 100vh;                   /* mas no mínimo a altura da tela */
-    overflow: visible;                   /* libera a rolagem da página */
-  }
-
-  .sidebar {                             /* barra superior */
-    flex-wrap: wrap;                     /* itens quebram para a linha de baixo se faltar espaço */
-  }
-
-  .main {                                /* área do conteúdo */
-    display: block;                      /* desliga a grade: os blocos ficam empilhados */
-  }
-
-  .kpis,                                 /* cartões de resumo... */
-  .grid2 {                               /* ...e linhas de cards */
-    margin-top: var(--gap);              /* espaço acima de cada um (a grade não faz mais isso) */
-  }
-
-  .kpis {                                /* cartões de resumo */
-    grid-template-columns: repeat(2, 1fr); /* 2 por linha em vez de 4 */
-  }
-
-  .grid2,                                /* linha dos gráficos... */
-  .bottom {                              /* ...e bloco de leituras/alertas */
-    grid-template-columns: 1fr;          /* 1 coluna: cards um embaixo do outro */
-    grid-template-rows: none;            /* sem altura fixa nas linhas */
-  }
-
-  .chart-wrap {                          /* caixa do gráfico de linha */
-    flex: none;                          /* não estica mais */
-    height: 260px;                       /* altura fixa */
-  }
-
-  .donut-wrap {                          /* caixa da rosca */
-    flex: none;                          /* não estica mais */
-    height: 180px;                       /* altura fixa */
-  }
-
-  #readings,                             /* lista de leituras... */
-  #alerts {                              /* ...e lista de alertas */
-    overflow: visible;                   /* mostra tudo, sem cortar */
-  }
-
-  .status-pill {                         /* aviso "Sistema operacional" */
-    position: static;                    /* sai do canto e volta ao fluxo normal da página */
-    margin: 12px 0;                      /* espaço acima e abaixo */
-  }
+.alert-time {
+    margin-top: 2px;
+    font-size: 10px;
+    color: #6de871;
 }
