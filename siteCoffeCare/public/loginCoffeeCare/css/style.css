@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle, #35503f, #243a2d, #1a2b21, #111d16);
+    color: #35503f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos do Login */
+.login-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 100px;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #35503f;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1a2b21;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #1a2b21;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    min-height: 20px;
+}
+
+/* Estilos do Dashboard */
+.navbar {
+    width: 100%;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-logout {
+    background-color: #e74c3c;
+    width: auto;
+    padding: 8px 20px;
+}
+
+.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+.dashboard-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* ==========================================
+   1. ESTILOS GERAIS
+   ========================================== */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ==========================================
+   2. COMPONENTES DE ESTRUTURA
+   ========================================== */
+.caixa {
+    background: #F2F2F2;
+    width: 400px;
+    margin:  auto;
+    padding: 80px;
+    border: 1px solid #344d3d;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(5, 22, 1, 0.25);
+}
+
+/* ==========================================
+   3. CLASSES DE CONTROLE DE TELA
+   ========================================== */
+.escondido {
+    display: none;
+}
+
+.visivel {
+    display: block;
+}
+
+/* ==========================================
+   4. FORMULÁRIOS E BOTÕES
+   ========================================== */
+input {
+    display: block;
+    width: 100%;
+    margin: 5px auto;
+    padding: 8px;
+    border:1px solid #358653;
+    border-radius: 4px;
+    background-color: #F2F2F2;
+}
+
+button {
+    background-color: #358653;
+    color: white;
+    width: 75%;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1a2b21;
+}
+
+/* ==========================================
+   5. MENSAGENS E ALERTAS
+   ========================================== */
+p.erro {
+    color: red;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+/* ==========================================
+   6. ANIMAÇÃO DE CARREGAMENTO (LOADER)
+   ========================================== */
+.loader {
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    --c: no-repeat linear-gradient(#d6a85d 0 0);
+    background: var(--c), var(--c), var(--c), var(--c);
+    background-size: 21px 21px;
+    animation: l5 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes l5 {
+    0% {
+        background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    }
+    33% {
+        background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+        width: 60px;
+        height: 60px;
+    }
+    66% {
+        background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+        width: 60px;
+        height: 60px;
+    }
+    100% {
+        background-position: 100% 0, 100% 100%, 0 100%, 0 0;
+    }
+}

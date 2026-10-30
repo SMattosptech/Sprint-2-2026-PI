@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coffee Care - Visão geral</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">☕</div>
+      <div>
+        <div class="brand-name">Coffee Care</div>
+        <div class="brand-sub">MONITORAMENTO</div>
+      </div>
+    </div>
+    <div class="menu-label">MENU PRINCIPAL</div>
+    <nav class="menu">
+      <button class="menu-item active" data-view="overview"><span class="ico">▦</span>Visão Geral</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="avatar">CC</div>
+      <div>
+        <div class="foot-name">Coffee Care</div>
+        <div class="foot-sub">Projeto de PI</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb">PAINEL DE CONTROLE  /  VISÃO GERAL</div>
+      <h1>Visão Geral</h1>
+      <p>Acompanhe a saúde da sua produção em tempo real.</p>
+    </header>
+    <div class="status-pill">
+      <span class="dot green"></span> Sistema operacional
+    </div>
+
+    <section class="kpis">
+      <div class="card kpi">
+        <div class="kpi-label">Umidade Atual</div>
+        <div class="kpi-value"><span id="kpi-temp">15</span><span class="unit">%</span></div>
+        <div class="kpi-tag green"><span class="dot-sm green"></span>Dentro do ideal</div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Sensores ativos</div>
+        <div class="kpi-value"><span id="kpi-active">08</span><span class="unit">/ 08</span></div>
+        <div class="kpi-tag green"><span class="dot-sm green"></span>Todos conectados</div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Alertas hoje</div>
+        <div class="kpi-value"><span id="kpi-alerts">02</span></div>
+        <div class="kpi-tag green"><span class="dot-sm green"></span><span id="kpi-alerts-sub">1 em observação</span></div>
+      </div>
+      <div class="card kpi">
+        <div class="kpi-label">Talhão Selecionado</div>
+        <div class="kpi-value"><span id="kpi-econ">Talhão-01</span></div>
+        <div class="kpi-tag green"><span class="dot-sm green"></span>neste mês</div>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="card chart-card">
+        <div class="card-head">
+          <div>
+            <h2>Umidade ao longo do dia</h2>
+            <p>Leituras médias dos sensores (%)</p>
+          </div>
+          <select id="period" class="select">
+            <option value="24">Sensor-01</option>
+            <option value="7">Sensor-02</option>
+          </select>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>Status dos sensores</h2>
+            <p>Condição atual dos equipamentos</p>
+          </div>
+        </div>
+        <div class="donut-wrap">
+          <canvas id="donut-chart" class="donut"></canvas>
+        </div>
+        <div class="legend">
+          <div class="legend-row"><span class="dot green"></span>Normal<span class="lval" id="cnt-normal">06</span></div>
+          <div class="legend-row"><span class="dot amber"></span>Atenção<span class="lval" id="cnt-attn">02</span></div>
+          <div class="legend-row"><span class="dot red"></span>Crítico<span class="lval" id="cnt-crit">00</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid2 bottom">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>Leituras recentes</h2>
+            <p>Últimas atualizações recebidas</p>
+          </div>
+        </div>
+        <div class="table-head">
+          <span>SENSOR</span><span>LOCAL</span><span>UMIDADE</span><span>STATUS</span>
+        </div>
+        <div id="readings">
+        <div class="row">
+          <span>Umidade-01</span>
+          <span>Talhão 1</span>
+          <span style="font-weight:700">45%</span>
+          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
+        </div>
+        <div class="row">
+          <span>Umidade-02</span>
+          <span>Talhão 2</span>
+          <span style="font-weight:700">60%</span>
+          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip attn"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Atenção</span></span>
+        </div>
+        <div class="row">
+          <span>Umidade-03</span>
+          <span>Talhão 3</span>
+          <span style="font-weight:700">48%</span>
+          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
+        </div>
+        <div class="row">
+          <span>Umidade-04</span>
+          <span>Talhão 1</span>
+          <span style="font-weight:700">52%</span>
+          <span style="display:flex;align-items:center;gap:6px"><span class="status-chip normal"><span class="dot" style="width:6px;height:6px;background:currentColor"></span>Normal</span></span>
+        </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>Alertas recentes</h2>
+            <p>Eventos que precisam de atenção</p>
+          </div>
+        </div>
+        <div id="alerts">
+          <div class="alert">
+            <div class="aico amber">!</div>
+            <div style="flex:1">
+              <div class="alert-title">Umidade elevada</div>
+              <div class="alert-sub">Talhão 1 · 60%</div>
+              <div class="alert-time">Há 4 minutos</div>
+            </div>
+          </div>
+          <div class="alert ok">
+            <div class="aico green">✓</div>
+            <div style="flex:1">
+              <div class="alert-title">Sistema conectado</div>
+              <div class="alert-sub">Todos os sensores online</div>
+              <div class="alert-time">Há 12 minutos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
