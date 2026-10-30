@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Coffee Care - Visão geral</title>
-<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <div class="app">
@@ -32,10 +32,8 @@
     <!-- TÍTULO -->
     <div class="topbar">
       <div class="crumb">PAINEL DE CONTROLE / VISÃO GERAL</div>
-      <div class="page-title">Visão Geral</div>
-    </div>
-    <div class="status-pill"><div class="dot green"></div>Sistema operacional</div>
-
+      <div class="page-title">Monitoramento em Talhão</div><br>
+    
     <!-- CONTEÚDO: coluna da esquerda (.left) e coluna da direita (.side), lado a lado -->
     <div class="content">
 
@@ -45,18 +43,18 @@
         <!-- CARTÕES DE CIMA -->
         <div class="kpis">
           <div class="card">
-            <div class="kpi-label">Umidade Atual</div>
-            <div class="kpi-value">15<div class="unit">%</div></div>
-            <div class="kpi-tag"><div class="dot-sm green"></div>Dentro do ideal</div>
+            <div class="kpi-label">Última leitura captada (umidade)</div>
+            <div class="kpi-value">25.5<div class="unit">%</div></div>
+            <div class="kpi-tag"><div class="dot-sm green"></div>Leitura registrada 23h</div>
           </div>
           <div class="card">
-            <div class="kpi-label">Sensores ativos</div>
-            <div class="kpi-value">08<div class="unit">/ 08</div></div>
-            <div class="kpi-tag"><div class="dot-sm green"></div>Todos conectados</div>
+            <div class="kpi-label">Status do sensores</div>
+            <div class="kpi-value">'Normal'<div class="unit"></div></div>
+            <div class="kpi-tag"><div class="dot-sm green"></div>Talhão-01</div>
           </div>
           <div class="card">
             <div class="kpi-label">Alertas hoje</div>
-            <div class="kpi-value">02</div>
+            <div class="kpi-value1">02</div>
             <div class="kpi-tag"><div class="dot-sm green"></div>1 em observação</div>
           </div>
           <div class="card">
@@ -86,7 +84,7 @@
             <div class="card-head">
               <div>
                 <div class="title">Status dos sensores</div>
-                <div class="sub">Condição atual dos equipamentos</div>
+                <div class="sub">Condição atual dos sensores no talhão-01</div>
               </div>
             </div>
             <div class="donut-wrap"><canvas id="donut-chart" class="donut"></canvas></div>
