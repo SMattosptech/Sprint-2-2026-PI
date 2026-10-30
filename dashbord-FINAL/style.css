@@ -1,3 +1,15 @@
+/* ============================================================
+   COFFEE CARE - CSS SIMPLIFICADO (só com o que foi visto no exercício de Flexbox)
+
+   display: flex            liga o flexbox
+   flex-direction: column   filhos um embaixo do outro
+   justify-content          alinha na direção principal
+   align-items              alinha na outra direção
+   gap                      espaço entre os filhos
+   flex: 1 / flex: 2        divide o espaço que sobra
+   flex-wrap: wrap          quebra para a linha de baixo se não couber
+   margin-left: auto        empurra o item para a direita
+   ============================================================ */
 
 /* ---------- BASE ---------- */
 * {
