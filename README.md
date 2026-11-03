@@ -6,8 +6,8 @@ O **CoffeeCare** é uma solução de monitoramento de umidade do solo baseada em
 
 ---
 
-## 📌 Visão Geral do Projeto
+## 📌 Sobre o Projeto
 
 No cultivo do café arábica em regiões como Minas Gerais, a escassez de água e a identificação tardia do estresse hídrico podem comprometer a produtividade da lavoura, gerando reduções expressivas na safra.
 
-O **CoffeeCare** resolve esse problema ao instalar sensores de umidade na zona radicular do cafeeiro, coletando dados continuamente e transmitindo-os para um dashboard intuitivo com gráficos temporais e emissão de alertas. O projeto conta ainda com uma calculadora financeira para estimar o impacto econômico de perdas de produção sobre a receita.
+O **CoffeeCare** resolve esse problema ao instalar sensores de umidade no solo, coletando dados continuamente e transmitindo-os para um dashboard intuitivo com gráficos temporais e emissão de alertas. 
