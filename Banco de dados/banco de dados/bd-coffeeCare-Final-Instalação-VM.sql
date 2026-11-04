@@ -149,6 +149,7 @@ ORDER BY m.data_hora DESC;
 
 
 
+
 SELECT *
 FROM coffeCare.medicao
 ORDER BY id_medicao DESC;
