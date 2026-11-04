@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Educativo de Lógica</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a class="marca" href="index.html">
+                <h1 class="titulo">CoffeeCare<span>.</span></h1>
+            </a>
+
+            <nav class="abas">
+                <ul class="navbar">
+                    <li><a href="index.html">Inicial</a></li>
+                    <li><a href="simulador.html">Simulador</a></li>
+                </ul>
+            </nav>
+
+            <div class="perfil">
+                <a href="index.html">
+                    <img src="assets/icon/perfil.png" alt="Perfil">
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- TELA DE LOGIN -->
+    <div id="telaLogin" class="caixa visivel">
+        <h2>Entrar</h2>
+        <input type="text" id="logUser" placeholder="E-mail">
+        <input type="password" id="logPass" placeholder="Senha">
+        <p id="erroLogin" class="erro"></p>
+
+        <button type="button" onclick="entrar()">Entrar</button>
+        <button type="button" onclick="mostrarRegisto()">Criar Conta</button>
+    </div>
+
+    <!-- TELA DE REGISTRO -->
+    <div id="telaRegisto" class="caixa escondido">
+        <h2>Criar Conta</h2>
+
+        <input type="text" id="regUser" placeholder="Nome de Usuário" onkeyup="validarNome()">
+        <p id="erroNome" class="erro"></p>
+
+        <input type="text" id="regEmail" placeholder="E-mail" onkeyup="validacaoEmail()">
+        <p id="erroEmail" class="erro"></p>
+
+        <input type="text" id="regCpf" placeholder="CPF" onkeyup="validarCpf()">
+        <p id="erroCpf" class="erro"></p>
+
+        <input type="password" id="regPass" placeholder="Senha" onkeyup="validacaoSenha()">
+        <p id="erroSenha" class="erro">Senha precisa ter 8 caracteres no mínimo</p>
+
+        <input type="password" id="regConfirmacao" placeholder="Confirmação da Senha" onkeyup="senhaConfirmacao()">
+        <p id="erroConfirmacao" class="erro"></p>
+
+        <p id="erroRegisto" class="erro"></p>
+
+        <button type="button" onclick="registrar()">Confirmar Registro</button>
+        <button type="button" onclick="mostrarLogin()">Voltar ao Login</button>
+    </div>
+
+    <script>
+        function validarNome() {
+            let nome = regUser.value;
+
+            if (nome.length >= 3) {
+                erroNome.innerHTML = `<p style="color: green;">Nome válido!</p>`;
+                return true;
+            } else {
+                erroNome.innerHTML = `<p style="color: red;">Digite seu nome corretamente</p>`;
+                return false;
+            }
+        }
+
+        function validacaoEmail() {
+            let email = regEmail.value;
+            let correto = false;
+
+            for (let i = 0; i < email.length; i++) {
+                if (email[i] == '@') {
+                    correto = true;
+                }
+            }
+
+            if (!correto) {
+                erroEmail.innerHTML = `<p style="color: red;">Email inválido</p>`;
+                return false;
+            } else {
+                erroEmail.innerHTML = `<p style="color: green;">Email válido!</p>`;
+                return true;
+            }
+        }
+
+        function validacaoSenha() {
+            let senha = regPass.value;
+
+            if (senha.length < 8) {
+                erroSenha.innerHTML = `<p style="color: red;">Senha precisa ter 8 caracteres no mínimo</p>`;
+                return false;
+            } else {
+                erroSenha.innerHTML = `<p style="color: green;">Senha válida!</p>`;
+                return true;
+            }
+        }
+
+        function senhaConfirmacao() {
+            let senha = regPass.value;
+            let confirmacaoSenha = regConfirmacao.value;
+
+            if (senha != confirmacaoSenha || confirmacaoSenha == '') {
+                erroConfirmacao.innerHTML = `<p style="color: red;">Senhas diferentes</p>`;
+                return false;
+            } else {
+                erroConfirmacao.innerHTML = `<p style="color: green;">Senhas iguais!</p>`;
+                return true;
+            }
+        }
+        function validarCpf() {
+            let cpf = regCpf.value;
+
+            if (cpf.length == 11 || cpf.length == 14) {
+                erroCpf.innerHTML = `<p style="color: green;">CPF válido!</p>`;
+                return true;
+            } else {
+                erroCpf.innerHTML = `<p style="color: red;">CPF inválido!</p>`;
+                return false;
+            }
+        }
+
+        function mostrarLogin() {
+            telaLogin.style.display = 'block';
+            telaRegisto.style.display = 'none';
+            telaCarregamento.style.display = 'none';
+        }
+
+        function mostrarRegisto() {
+            telaLogin.style.display = 'none';
+            telaRegisto.style.display = 'block';
+            telaCarregamento.style.display = 'none';
+        }
+
+
+        function mostrarDashboard() {
+            location.href = 'dashboard.html';
+        }
+
+        function sair() {
+            location.href = 'index.html';
+        }
+
+        let emailRegistrado = '';
+        let senhaRegistrado = '';
+
+        function registrar() {
+            if(validarNome && validacaoEmail && validacaoSenha && senhaConfirmacao && validarCpf){
+                emailRegistrado = regEmail.value;
+                senhaRegistrado = regPass.value;
+                alert("Cadastro Realizado com sucesso!");
+            }else{
+                alert("Campos inconsistentes!");
+            }
+        }
+
+        function entrar() {
+            if(emailRegistrado == logUser.value && senhaRegistrado == logPass.value){
+                alert("Login Realizado com sucesso!");
+                location.href = 'dashboard.html';
+            }else{
+                alert("Esse cadastro não existe!");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

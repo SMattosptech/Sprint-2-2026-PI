@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Coffee Care - Visão geral</title>
+<link rel="stylesheet" href="css/dash.css"/>
+</head>
+<body>
+<div class="app">
+ 
+  <!-- BARRA SUPERIOR -->
+  <div class="sidebar">
+    <div class="brand">
+      <div class="brand-name">Coffee Care</div>
+      <div class="brand-sub">DASHBOARD</div>
+    </div>
+    <div class="menu-label">MENU PRINCIPAL</div>
+    <div class="menu">
+      <select id="talhao" class="menu-select">
+        <option value="1">Talhão 01</option>
+        <option value="2">Talhão 02</option>
+        <option value="3">Talhão 03</option>
+      </select>
+    </div>
+    <div class="sidebar-foot">
+      <div class="avatar">👤</div>
+      <div>
+        <div class="foot-name">Admin</div>
+        <div class="foot-sub">Coffee Care</div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="main">
+    <!-- TÍTULO -->
+    <div class="topbar">
+      <div class="crumb">PAINEL DE CONTROLE</div>
+      <div class="title-row">
+        <div class="page-title" id="page-title">Monitoramento do Talhão 01</div>
+ 
+      </div>
+    </div>
+ 
+    <!-- CONTEÚDO: coluna da esquerda (.left) e coluna da direita (.side), lado a lado -->
+    <div class="content">
+ 
+      <!-- COLUNA DA ESQUERDA: cartões de cima e gráficos -->
+      <div class="left">
+ 
+        <!-- CARTÕES DE CIMA -->
+        <div class="kpis">
+          <div class="card">
+            <div class="kpi-label">Última leitura captada (umidade)</div>
+            <div class="kpi-value">25.5<div class="unit">%</div></div>
+            <div class="kpi-tag"><div class="dot-sm green"></div>Leitura registrada 23h</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">Umidade do sensor-01</div>
+            <div class="kpi-value">'Ideal'<div class="unit"></div></div>
+            <div class="kpi-tag"><div class="dot-sm green"></div>Última medição há 3min</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">Alertas hoje</div>
+            <div class="kpi-value1">02</div>
+            <div class="kpi-tag"><div class="dot-sm green"></div>1 em observação</div>
+          </div>
+        </div>
+ 
+        <!-- GRÁFICOS -->
+        <div class="charts">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="title">Umidade ao longo do dia</div>
+                <div class="sub">Leituras médias dos sensores (%)</div>
+              </div>
+              <select id="period" class="select">
+                <option value="24">Sensor-01</option>
+                <option value="7">Sensor-02</option>
+              </select>
+            </div>
+            <div class="chart-wrap"><canvas id="chart"></canvas></div>
+          </div>
+ 
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="title">Status dos sensores</div>
+                <div class="sub">Condição atual dos sensores no talhão-01</div>
+              </div>
+            </div>
+            <div class="donut-wrap"><canvas id="donut-chart" class="donut"></canvas></div>
+            <div class="legend">
+              <div class="legend-row"><div class="dot green"></div>Umidade ideal<div class="lval" id="cnt-normal">06</div></div>
+              <div class="legend-row"><div class="dot amber"></div>Umidade Baixa<div class="lval" id="cnt-attn">02</div></div>
+              <div class="legend-row"><div class="dot red"></div>Umidade Alta<div class="lval" id="cnt-crit">00</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- LEITURAS E ALERTAS (coluna da direita) -->
+      <div class="side">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="title">Leituras recentes</div>
+              <div class="sub">Últimas atualizações recebidas</div>
+            </div>
+          </div>
+          <div class="table-head">
+            <div>SENSOR</div><div>LOCAL</div><div>UMIDADE</div><div>STATUS</div>
+          </div>
+          <div id="readings">
+            <div class="row">
+              <div>Umidade-01</div><div>Talhão 1</div><div>45%</div>
+              <div class="status-chip normal">● Ideal</div>
+            </div>
+            <div class="row">
+              <div>Umidade-02</div><div>Talhão 2</div><div>60%</div>
+              <div class="status-chip attn">● Umidade Alta</div>
+            </div>
+            <div class="row">
+              <div>Umidade-03</div><div>Talhão 3</div><div>48%</div>
+              <div class="status-chip normal">● Ideal</div>
+            </div>
+            <div class="row">
+              <div>Umidade-04</div><div>Talhão 1</div><div>52%</div>
+              <div class="status-chip normal">● Ideal</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="title">Alertas recentes</div>
+              <div class="sub">Eventos que precisam de atenção</div>
+            </div>
+          </div>
+          <div id="alerts">
+            <div class="alert">
+              <div class="aico amber">!</div>
+              <div>
+                <div class="alert-title">Umidade elevada</div>
+                <div class="alert-sub">Talhão 1 · 60%</div>
+                <div class="alert-time">Há 4 minutos</div>
+              </div>
+            </div>
+            <div class="alert ok">
+              <div class="aico green">✓</div>
+              <div>
+                <div class="alert-title">Sistema conectado</div>
+                <div class="alert-sub">Todos os sensores online</div>
+                <div class="alert-time">Há 12 minutos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+   
+const dados = {
+  '24': {
+    labels: ['00h', '03h', '06h', '09h', '12h', '15h', '18h', '21h', '22h', '23h'],
+    Umidade: [23.5, 45.8, 24.2, 26.0, 25.5, 27.2, 98.0, 47.3, 25.0, 25.5],
+  },
+  '7': {
+    labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+    Umidade: [24.1, 25.3, 23.8, 26.5, 27.1, 25.0, 24.6],
+  },
+};
+
+let lineChart;
+function renderChart(period) {
+  if (lineChart) lineChart.destroy();
+  const d = dados[period];
+  lineChart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        label: 'Umidade (%)',
+        data: d.Umidade,
+        borderColor: '#B98543',
+        backgroundColor: 'rgba(185,133,67,0.15)',
+        fill: true,
+        tension: 0.4,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+        legend: {
+          labels: { color: '#e7eeea' },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { color: '#e7eeea' },
+        },
+        y: {
+          min: 0,
+          max: 100,
+          ticks: { color: '#e7eeea' },
+        },
+      },
+    },
+  });
+}
+
+const plugin = {
+  id: 'customCanvasBackgroundColor',
+  beforeDraw: (chart, args, options) => {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = options.color || 'lightGreen';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  },
+};
+
+let donutChart;
+function renderDonut() {
+  if (donutChart) donutChart.destroy();
+  const normal = 6;
+  const attn = 2;
+  const crit = 0;
+  donutChart = new Chart(document.getElementById('donut-chart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Umidade ideal', 'Umidade Alta', 'Umidade Baixa'],
+      datasets: [{
+        label: 'Sensores',
+        data: [normal, attn, crit],
+        backgroundColor: ['#6D946B', '#B98543', '#C96A55'],
+
+      }],
+    },
+       options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+          legend: {
+      position: 'top',
+      align: 'center',
+      labels: {
+        color: '#F0EEE8',
+        usePointStyle: true,
+        pointStyle: 'circle',
+        boxWidth: 8,
+        boxHeight: 8,
+        padding: 14,
+        font: { size: 12 },
+      },
+    },
+        customCanvasBackgroundColor: {
+          color: 'rgba(255, 255, 255, 0.0)',
+        },
+      },
+    },
+    plugins: [plugin],
+  });
+
+  document.getElementById('cnt-normal').textContent = String(normal).padStart(2, '0');
+  document.getElementById('cnt-attn').textContent = String(attn).padStart(2, '0');
+  document.getElementById('cnt-crit').textContent = String(crit).padStart(2, '0');
+}
+
+renderDonut();
+renderChart('24');
+
+document.getElementById('period').addEventListener('change', (e) => renderChart(e.target.value));
+</script>
+</body>
+</html
