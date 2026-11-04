@@ -1,17 +1,3 @@
-/* ============================================================
-   COFFEE CARE - CSS SIMPLIFICADO (só com o que foi visto no exercício de Flexbox)
-
-   display: flex            liga o flexbox
-   flex-direction: column   filhos um embaixo do outro
-   justify-content          alinha na direção principal
-   align-items              alinha na outra direção
-   gap                      espaço entre os filhos
-   flex: 1 / flex: 2        divide o espaço que sobra
-   flex-wrap: wrap          quebra para a linha de baixo se não couber
-   margin-left: auto        empurra o item para a direita
-   ============================================================ */
-
-/* ---------- BASE ---------- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,67 +10,68 @@ body {
     color: #F0EEE8;
 }
 
-/* A página: tudo um embaixo do outro (barra em cima, conteúdo embaixo) */
 .app {
     display: flex;
     flex-direction: column;
 }
 
 /* ---------- BARRA SUPERIOR ---------- */
+
 .sidebar {
     display: flex;
     align-items: center;
-    gap: 24px;
-    padding: 8px 24px;
-    background-color: #0f1d15;
-    border-bottom: 1px solid #5a4a2b;
+    gap: 30px;
+    min-height: 75px;
+    padding: 10px 38px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E5E5;
 }
 
 .brand {
     display: flex;
     flex-direction: column;
-    padding-right: 24px;
-    border-right: 1px solid #2f4a3a;
+    padding-right: 25px;
+    border-right: 1px solid #E5E5E5;
 }
 
 .brand-name {
-    width: 90px;                 /* largura pequena quebra "Coffee Care" em 2 linhas */
-    font-size: 26px;
+    font-size: 25px;
     font-weight: 700;
+    color: #243a2d;
 }
 
 .brand-sub {
-    font-size: 15px;
-    letter-spacing: 4px;
-    color: #D6A85D;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #8b5038;
     text-align: right;
 }
 
 .menu-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: #B8C6B8;
+    display: none;
 }
 
 .menu {
     display: flex;
-    gap: 6px;
+    align-items: center;
+    gap: 8px;
 }
 
 .menu-item {
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 15px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #243a2d;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .menu-item.active {
-    background-color: #3B5543;
-    border-bottom: 2px solid #D6A85D;
-    color: #E9D7B4;
+    background-color: #edf1ed;
+    color: #243a2d;
     font-weight: 700;
 }
 
-/* margin-left: auto empurra o usuário para o canto direito */
 .sidebar-foot {
     display: flex;
     align-items: center;
@@ -96,28 +83,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background-color: #D6A85D;
+    background-color: #243a2d;
+    color: #FFFFFF;
 }
 
 .foot-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
+    color: #243a2d;
 }
 
 .foot-sub {
     font-size: 12px;
-    color: #B8C6B8;
+    color: #777777;
 }
 
 /* ---------- ÁREA PRINCIPAL ---------- */
+
 .main {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    padding: 14px 38px;
+    padding: 20px 38px;
 }
 
 .crumb {
@@ -130,7 +120,6 @@ body {
     font-weight: 700;
 }
 
-/* esquerda (.left) e direita (.side) lado a lado */
 .content {
     display: flex;
     gap: 14px;
@@ -141,6 +130,7 @@ body {
     flex-direction: column;
     gap: 14px;
     flex: 1;
+    min-width: 0;
 }
 
 .side {
@@ -148,16 +138,17 @@ body {
     flex-direction: column;
     gap: 14px;
     width: 400px;
+    flex-shrink: 0;
 }
 
-/* Os 2 cards da direita dividem a altura da coluna, ficando alinhados com o resto */
 .side > .card {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-/* ---------- CARD ---------- */
+/* ---------- CARDS ---------- */
+
 .card {
     padding: 16px;
     border: 1px solid #4a5f50;
@@ -188,11 +179,13 @@ body {
     border: 1px solid #4a5f50;
     border-radius: 7px;
     background-color: #405344;
-    font-size: 10px;
+    font-size: 12px;
     color: #E9D7B4;
+    cursor: pointer;
 }
 
-/* ---------- CARTÕES DE RESUMO (os 4 de cima) ---------- */
+/* ---------- KPIs ---------- */
+
 .kpis {
     display: flex;
     gap: 14px;
@@ -200,10 +193,10 @@ body {
 
 .kpis > .card {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    flex: 1;
 }
 
 .kpi-label {
@@ -239,7 +232,7 @@ body {
 }
 
 /* ---------- GRÁFICOS ---------- */
-/* lado a lado: o 1º com 2 partes e o 2º com 1 parte */
+
 .charts {
     display: flex;
     gap: 14px;
@@ -247,13 +240,13 @@ body {
 
 .charts > .card {
     flex: 1;
+    min-width: 0;
 }
 
 .charts > .card:first-child {
     flex: 2;
 }
 
-/* O Chart.js precisa de uma altura definida na caixa do gráfico */
 .chart-wrap {
     height: 260px;
     border-radius: 8px;
@@ -267,7 +260,6 @@ body {
     height: 180px;
 }
 
-/* Legenda embaixo da rosca */
 .legend {
     display: flex;
     flex-direction: column;
@@ -290,25 +282,37 @@ body {
     color: #F0EEE8;
 }
 
-/* Bolinhas coloridas */
+/* ---------- CORES ---------- */
+
+.dot,
+.dot-sm {
+    border-radius: 50%;
+}
+
 .dot {
     width: 10px;
     height: 10px;
-    border-radius: 50%;
 }
 
 .dot-sm {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
 }
 
-.green { background-color: #46aa5c; }
-.amber { background-color: #D8A65A; }
-.red   { background-color: #C96A55; }
+.green {
+    background-color: #46aa5c;
+}
 
-/* ---------- TABELA "LEITURAS RECENTES" ---------- */
-/* Cabeçalho e linhas: 4 colunas que dividem o espaço igualmente */
+.amber {
+    background-color: #D8A65A;
+}
+
+.red {
+    background-color: #C96A55;
+}
+
+/* ---------- LEITURAS RECENTES ---------- */
+
 .table-head,
 .row {
     display: flex;
@@ -323,7 +327,7 @@ body {
 .table-head {
     justify-content: center;
     margin-bottom: 6px;
-    padding: 8px 8px;
+    padding: 8px;
     border-radius: 5px;
     background-color: #405344;
     font-size: 13px;
@@ -331,17 +335,16 @@ body {
     color: #D8A65A;
 }
 
-/* As linhas dividem igualmente a altura que sobra no card */
 #readings {
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
 }
 
 .row {
     flex: 1;
     align-items: center;
-    padding: 8px 8px;
+    padding: 8px;
     border-top: 1px solid #F0EEE8;
     font-size: 14px;
 }
@@ -350,11 +353,20 @@ body {
     font-size: 12px;
 }
 
-.normal { color: #6D946B; }
-.attn   { color: #D8A65A; }
-.crit   { color: #C96A55; }
+.normal {
+    color: #6D946B;
+}
 
-/* ---------- ALERTAS RECENTES ---------- */
+.attn {
+    color: #D8A65A;
+}
+
+.crit {
+    color: #C96A55;
+}
+
+/* ---------- ALERTAS ---------- */
+
 .alert {
     display: flex;
     align-items: flex-start;
@@ -377,8 +389,13 @@ body {
     font-weight: 700;
 }
 
-.aico.amber { background-color: #D8A65A; }
-.aico.green { background-color: #6D946B; }
+.aico.amber {
+    background-color: #D8A65A;
+}
+
+.aico.green {
+    background-color: #6D946B;
+}
 
 .alert-title {
     margin-bottom: 2px;

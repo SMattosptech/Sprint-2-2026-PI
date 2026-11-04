@@ -128,31 +128,8 @@ VALUES
 ('Umidade crítica', '2026-10-27 11:00:00', 4);
 
 
--- Exibe os sensores, seus status, os alertas, os talhões e as medições,
--- classificando a umidade do solo como Normal, Atenção ou Crítico.
-SELECT
-    s.id_sensor AS Sensor,
-    s.status_sensor AS Status,
-    a.tipo_alerta AS Aviso,
-    t.id_talhao AS Talhao,
-    m.sensor_umidade,
-    a.data_hora AS 'Historico Recente',
-    CASE
-        WHEN m.sensor_umidade > 50 THEN 'Normal'
-        WHEN m.sensor_umidade >= 30 THEN 'Atenção'
-        ELSE 'Crítico'
-    END AS classificacao
-FROM talhao AS t
-LEFT JOIN sensor AS s
-    ON t.id_talhao = s.fk_talhao
-LEFT JOIN medicao AS m
-    ON s.id_sensor = m.fk_sensor
-LEFT JOIN alerta AS a
-    ON m.id_medicao = a.fk_medicao;
-
-
 -- Exibe as medições do sensor de ID 1, mostrando sua umidade,
--- data, status e classificação, da mais recente para a mais antiga.
+-- data, horário, status e classificação, da mais recente para a mais antiga.
 SELECT
     s.id_sensor AS Sensor,
     s.status_sensor AS Status,
@@ -169,6 +146,7 @@ LEFT JOIN medicao AS m
     ON s.id_sensor = m.fk_sensor
 WHERE s.id_sensor = 1
 ORDER BY m.data_hora DESC;
+
 
 
 SELECT *
