@@ -62,19 +62,20 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medicao (sensor_umidade) VALUES (?)',
-                [sensorUmidade]
+                'INSERT INTO medicao (sensor_umidade, fk_sensor) VALUES (?, ?)',
+                [sensorUmidade, 1]
             );
-            console.log( sensorUmidade);
+            
+    console.log(sensorUmidade);
 
-        }
+}
 
     });
 
-    // evento para lidar com erros na comunicação serial
-    arduino.on('error', (mensagem) => {
-        console.error(`Erro no arduino (Mensagem: ${mensagem}`)
-    });
+// evento para lidar com erros na comunicação serial
+arduino.on('error', (mensagem) => {
+    console.error(`Erro no arduino (Mensagem: ${mensagem}`)
+});
 }
 
 // função para criar e configurar o servidor web
@@ -97,7 +98,7 @@ const servidor = (
 
     // define os endpoints da API para cada tipo de sensor
     //app.get('/sensores/analogico', (_, response) => {
-        //return response.json(valoresSensorAnalogico);
+    //return response.json(valoresSensorAnalogico);
     //});//
     app.get('/sensores/umidade', (_, response) => {
         return response.json(valoresSensorUmidade);
@@ -112,7 +113,7 @@ const servidor = (
 
     // inicia a comunicação serial
     await serial(
-      //  valoresSensorAnalogico,
+        //  valoresSensorAnalogico,
         valoresSensorUmidade
     );
 
