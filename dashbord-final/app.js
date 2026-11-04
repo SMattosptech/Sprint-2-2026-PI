@@ -71,7 +71,7 @@ function renderDonut() {
   donutChart = new Chart(document.getElementById('donut-chart'), {
     type: 'doughnut',
     data: {
-      labels: ['Umidade ideal', 'Umidade Alta', 'Umidade Baixa'],
+      labels: ['Normal', 'Atenção', 'Crítico'],
       datasets: [{
         label: 'Sensores',
         data: [normal, attn, crit],
