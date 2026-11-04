@@ -1,6 +1,7 @@
+
 /* ============================================================
    COFFEE CARE - CSS SIMPLIFICADO (só com o que foi visto no exercício de Flexbox)
-
+ 
    display: flex            liga o flexbox
    flex-direction: column   filhos um embaixo do outro
    justify-content          alinha na direção principal
@@ -10,26 +11,32 @@
    flex-wrap: wrap          quebra para a linha de baixo se não couber
    margin-left: auto        empurra o item para a direita
    ============================================================ */
-
+ 
 /* ---------- BASE ---------- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
+ 
+html,
+body {
+    height: 100%;
+}
+ 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #1a2b21;
     color: #F0EEE8;
 }
-
-/* A página: tudo um embaixo do outro (barra em cima, conteúdo embaixo) */
+ 
+/* A página: ocupa a tela inteira (barra em cima, conteúdo embaixo) */
 .app {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
-
+ 
 /* ---------- BARRA SUPERIOR ---------- */
 .sidebar {
     display: flex;
@@ -39,51 +46,70 @@ body {
     background-color: #0f1d15;
     border-bottom: 1px solid #5a4a2b;
 }
-
+ 
 .brand {
     display: flex;
     flex-direction: column;
     padding-right: 24px;
     border-right: 1px solid #2f4a3a;
 }
-
+ 
 .brand-name {
     width: 90px;                 /* largura pequena quebra "Coffee Care" em 2 linhas */
     font-size: 26px;
     font-weight: 700;
 }
-
+ 
 .brand-sub {
     font-size: 15px;
     letter-spacing: 4px;
     color: #D6A85D;
     text-align: right;
 }
-
+ 
 .menu-label {
     font-size: 10px;
     font-weight: 700;
     color: #B8C6B8;
 }
-
+ 
 .menu {
     display: flex;
     gap: 6px;
 }
-
+ 
 .menu-item {
     padding: 12px 20px;
     border-radius: 10px;
     font-size: 15px;
 }
-
+ 
 .menu-item.active {
     background-color: #3B5543;
     border-bottom: 2px solid #D6A85D;
     color: #E9D7B4;
     font-weight: 700;
 }
-
+ 
+/* seletor de talhão na barra superior */
+.menu-select {
+    padding: 12px 20px;
+    border: none;
+    border-bottom: 2px solid #D6A85D;
+    border-radius: 10px;
+    background-color: #3B5543;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    color: #E9D7B4;
+    cursor: pointer;
+}
+ 
+.menu-select option {
+    background-color: #0f1d15;
+    color: #E9D7B4;
+}
+ 
 /* margin-left: auto empurra o usuário para o canto direito */
 .sidebar-foot {
     display: flex;
@@ -91,7 +117,7 @@ body {
     gap: 12px;
     margin-left: auto;
 }
-
+ 
 .avatar {
     display: flex;
     align-items: center;
@@ -101,62 +127,86 @@ body {
     border-radius: 50%;
     background-color: #D6A85D;
 }
-
+ 
 .foot-name {
     font-size: 15px;
     font-weight: 700;
 }
-
+ 
 .foot-sub {
     font-size: 12px;
     color: #B8C6B8;
 }
-
+ 
 /* ---------- ÁREA PRINCIPAL ---------- */
 .main {
     display: flex;
     flex-direction: column;
+    flex: 1;                     /* ocupa toda a altura que sobra abaixo da barra */
     gap: 14px;
     padding: 14px 38px;
 }
-
+ 
 .crumb {
     font-size: 11px;
     color: #FFF9ED;
 }
-
+ 
+.title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+}
+ 
 .page-title {
     font-size: 24px;
     font-weight: 700;
 }
-
-/* esquerda (.left) e direita (.side) lado a lado */
+ 
+/* identificação do talhão atual */
+.talhao-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid #D6A85D;
+    border-radius: 20px;
+    background-color: #3B5543;
+    font-size: 14px;
+    font-weight: 700;
+    color: #E9D7B4;
+}
+ 
+/* esquerda (.left) e direita (.side) lado a lado, esticando até o fim da tela */
 .content {
     display: flex;
+    flex: 1;
     gap: 14px;
 }
-
+ 
 .left {
     display: flex;
     flex-direction: column;
     gap: 14px;
     flex: 1;
+    min-width: 0;
 }
-
+ 
 .side {
     display: flex;
     flex-direction: column;
     gap: 14px;
     width: 400px;
 }
-
+ 
 /* Os 2 cards da direita dividem a altura da coluna, ficando alinhados com o resto */
 .side > .card {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
-
+ 
 /* ---------- CARD ---------- */
 .card {
     padding: 16px;
@@ -164,25 +214,25 @@ body {
     border-radius: 12px;
     background-color: #2a4033;
 }
-
+ 
 .card-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 8px;
 }
-
+ 
 .title {
     font-size: 17px;
     font-weight: 700;
 }
-
+ 
 .sub {
     margin-top: 4px;
     font-size: 12px;
     color: #FFF9ED;
 }
-
+ 
 .select {
     padding: 6px 10px;
     border: 1px solid #4a5f50;
@@ -191,13 +241,13 @@ body {
     font-size: 10px;
     color: #E9D7B4;
 }
-
+ 
 /* ---------- CARTÕES DE RESUMO (os 4 de cima) ---------- */
 .kpis {
     display: flex;
     gap: 14px;
 }
-
+ 
 .kpis > .card {
     display: flex;
     flex-direction: column;
@@ -205,13 +255,13 @@ body {
     justify-content: space-between;
     flex: 1;
 }
-
+ 
 .kpi-label {
     font-size: 13px;
     text-align: center;
     color: #FFF9ED;
 }
-
+ 
 .kpi-value,
 .kpi-value1 {
     display: flex;
@@ -222,13 +272,13 @@ body {
     font-weight: 800;
     color: #D6A85D;
 }
-
+ 
 .unit {
     margin-left: 4px;
     font-size: 14px;
     color: #FFF9ED;
 }
-
+ 
 .kpi-tag {
     display: flex;
     align-items: center;
@@ -237,36 +287,44 @@ body {
     font-size: 11px;
     color: #FFF9ED;
 }
-
+ 
 /* ---------- GRÁFICOS ---------- */
 /* lado a lado: o 1º com 2 partes e o 2º com 1 parte */
 .charts {
     display: flex;
+    flex: 1;                     /* os gráficos esticam para preencher a altura */
     gap: 14px;
 }
-
+ 
 .charts > .card {
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    min-width: 0;
 }
-
+ 
 .charts > .card:first-child {
     flex: 2;
 }
-
-/* O Chart.js precisa de uma altura definida na caixa do gráfico */
+ 
+/* O Chart.js precisa de uma altura definida; aqui ela cresce com a tela */
 .chart-wrap {
-    height: 260px;
+    position: relative;
+    flex: 1;
+    min-height: 260px;
     border-radius: 8px;
     background-color: #405344;
 }
-
+ 
 .donut-wrap {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 180px;
+    flex: 1;
+    min-height: 180px;
 }
-
+ 
 /* Legenda embaixo da rosca */
 .legend {
     display: flex;
@@ -274,7 +332,7 @@ body {
     gap: 4px;
     padding-top: 8px;
 }
-
+ 
 .legend-row {
     display: flex;
     align-items: center;
@@ -282,31 +340,31 @@ body {
     font-size: 12px;
     color: #E9D7B4;
 }
-
+ 
 .lval {
     margin-left: auto;
     font-size: 13px;
     font-weight: 700;
     color: #F0EEE8;
 }
-
+ 
 /* Bolinhas coloridas */
 .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
 }
-
+ 
 .dot-sm {
     width: 8px;
     height: 8px;
     border-radius: 50%;
 }
-
+ 
 .green { background-color: #46aa5c; }
 .amber { background-color: #D8A65A; }
 .red   { background-color: #C96A55; }
-
+ 
 /* ---------- TABELA "LEITURAS RECENTES" ---------- */
 /* Cabeçalho e linhas: 4 colunas que dividem o espaço igualmente */
 .table-head,
@@ -314,12 +372,12 @@ body {
     display: flex;
     gap: 6px;
 }
-
+ 
 .table-head > div,
 .row > div {
     flex: 1;
 }
-
+ 
 .table-head {
     justify-content: center;
     margin-bottom: 6px;
@@ -330,14 +388,14 @@ body {
     font-weight: 700;
     color: #D8A65A;
 }
-
+ 
 /* As linhas dividem igualmente a altura que sobra no card */
 #readings {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
-
+ 
 .row {
     flex: 1;
     align-items: center;
@@ -345,15 +403,15 @@ body {
     border-top: 1px solid #F0EEE8;
     font-size: 14px;
 }
-
+ 
 .status-chip {
     font-size: 12px;
 }
-
+ 
 .normal { color: #6D946B; }
 .attn   { color: #D8A65A; }
 .crit   { color: #C96A55; }
-
+ 
 /* ---------- ALERTAS RECENTES ---------- */
 .alert {
     display: flex;
@@ -364,7 +422,7 @@ body {
     border-radius: 9px;
     background-color: #405344;
 }
-
+ 
 .aico {
     display: flex;
     align-items: center;
@@ -376,21 +434,21 @@ body {
     font-size: 11px;
     font-weight: 700;
 }
-
+ 
 .aico.amber { background-color: #D8A65A; }
 .aico.green { background-color: #6D946B; }
-
+ 
 .alert-title {
     margin-bottom: 2px;
     font-size: 12px;
     font-weight: 700;
 }
-
+ 
 .alert-sub {
     font-size: 11px;
     color: #e6e4df;
 }
-
+ 
 .alert-time {
     margin-top: 2px;
     font-size: 10px;
